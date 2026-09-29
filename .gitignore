@@ -1,0 +1,7 @@
+# Client source documents: keep them out of the repository
+*.docx
+*.pdf
+ADS Registered Logo (1).jpeg
+
+# Vercel local link folder
+.vercel/

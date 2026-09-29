@@ -1,0 +1,61 @@
+{
+  "_source": "Titles, years and organisers are taken word-for-word from 'AWARDS AND RECOGNITION DEBTANU BARMAN 2024.docx' (Fig-01 to Fig-39) and the 2025 annual report (Awards, Recognitions and Start-up pages). Nothing has been added. Where a figure has two photos of the same award they are shown as one entry.",
+  "year_order": ["2025", "2024", "2023", "2022", "2021", "2020", "2019", "undated"],
+  "kinds": [
+    {"id": "award", "label": "Award"},
+    {"id": "recognition", "label": "Recognition"},
+    {"id": "startup", "label": "Start-up and grants"},
+    {"id": "training", "label": "Training"}
+  ],
+  "items": [
+    {"group": "2025", "kind": "award", "title": "ICSBP 2025, Kolkata", "detail": "Honoured at the ICSBP 2025 conference", "images": ["images/a-icsbp.jpg"], "alt": "Dr. Debtanu Barman receiving recognition on stage at ICSBP 2025, Kolkata", "src": "report"},
+    {"group": "2025", "kind": "startup", "title": "Fisheries Startup Conference 2025", "detail": "Re-imagining Indian Fisheries 2047", "images": ["images/s-ifsc.jpg"], "alt": "Dr. Debtanu Barman receiving a plaque at the Fisheries Startup Conference 2025", "src": "report"},
+
+    {"group": "2024", "kind": "award", "title": "National Atal Award", "when": "20 June 2024", "detail": "Category: Water Solution", "org": "Prime Minister Museum, Teen Murti, New Delhi", "images": ["images/awards/aw-28.jpg", "images/awards/aw-29.jpg"], "alt": "National Atal Award plate and trophy, 20 June 2024", "src": "Fig-28"},
+    {"group": "2024", "kind": "award", "title": "MSME Honours Award 2024", "detail": "Champion of Cause. Presented to Aqua Doctor Solutions, Kolkata", "images": ["images/awards/aw-27.jpg"], "alt": "MSME Honours Champion of Cause trophy presented to Aqua Doctor Solutions", "src": "Fig-27"},
+    {"group": "2024", "kind": "award", "title": "Best Entrepreneur Award 2024", "org": "ICAR-CIFE Kolkata Centre", "images": ["images/awards/aw-40.jpg"], "alt": "Framed ICAR-CIFE appreciation certificate", "src": "Fig-39"},
+    {"group": "2024", "kind": "award", "title": "Emerging Business of the Year (Agriculture) 2024", "org": "MSME, Indian Business Award", "images": ["images/awards/aw-35.jpg"], "alt": "Indian Business Award trophy for Emerging Business of the Year (Agriculture)", "src": "Fig-34"},
+    {"group": "2024", "kind": "award", "title": "Best Fisheries Consultant 2024", "org": "Aranya Bangla Foundation", "images": ["images/awards/aw-36.jpg"], "alt": "Bengal Excellence Award 2024 trophy", "src": "Fig-35"},
+    {"group": "2024", "kind": "recognition", "title": "Outstanding Contributions and Illustrious Service to the Fisheries Sector 2024", "org": "College of Fisheries, Kishanganj", "images": ["images/awards/aw-34.jpg"], "alt": "Framed citation from the College of Fisheries, Kishanganj", "src": "Fig-33"},
+    {"group": "2024", "kind": "award", "title": "Entrepreneurship Champion Award 2024", "org": "Samadhan", "images": ["images/awards/aw-32.jpg"], "alt": "Entrepreneurship Champions Award 2024 certificate of excellence", "src": "Fig-31"},
+    {"group": "2024", "kind": "award", "title": "Star Performer 2024", "org": "NEEDP", "images": ["images/awards/aw-31.jpg"], "alt": "Star Performer glass trophy", "src": "Fig-30"},
+    {"group": "2024", "kind": "award", "title": "CMA MSME Conclave 2024", "org": "HII", "images": ["images/awards/aw-30.jpg"], "alt": "CMA MSME Conclave 2024 glass trophy", "src": "Fig-29"},
+    {"group": "2024", "kind": "startup", "title": "Among the 10 best fisheries and aquaculture start-ups, 2024", "detail": "Matsyasathi featured for driving sustainable aquaculture forward", "images": ["images/r-mag.jpg"], "alt": "Magazine feature on Matsyasathi", "src": "report"},
+
+    {"group": "2023", "kind": "award", "title": "Achievers Brand Icon Awards 2023", "images": ["images/awards/aw-37.jpg"], "alt": "Achievers Brand Icon Awards trophy", "src": "Fig-36"},
+    {"group": "2023", "kind": "award", "title": "Aparajita Samman 2023", "detail": "Social Reforms", "org": "Angela Event", "images": ["images/awards/aw-03.jpg"], "alt": "Aparajita Samman 2023 trophy", "src": "Fig-03"},
+
+    {"group": "2022", "kind": "award", "title": "National Fish Farmer Conclave 2022", "detail": "Young Aqua Extension Worker Award", "org": "Dept. of Fisheries, Govt. of Uttar Pradesh", "images": ["images/awards/aw-14.jpg", "images/awards/aw-21.jpg"], "alt": "Young Aqua Extension Worker Award plaque and presentation", "src": "Fig-14, Fig-21"},
+    {"group": "2022", "kind": "award", "title": "Rural and Urban Development Summit and Award 2022", "detail": "Best Fisheries Start-up of the Year", "images": ["images/awards/aw-22.jpg"], "alt": "Receiving the Best Fisheries Start-up of the Year award on stage", "src": "Fig-22"},
+    {"group": "2022", "kind": "award", "title": "Banga Gaurav Samman 2022", "detail": "New Startups", "org": "Vaikalpik Chikitsa Paddhati Vikas Sanstha, India", "images": ["images/awards/aw-19.jpg"], "alt": "Banga Gaurav Samman certificate", "src": "Fig-19"},
+    {"group": "2022", "kind": "award", "title": "DISHA 2022, Young Professional Award", "images": ["images/awards/aw-16.jpg", "images/awards/aw-39.jpg"], "alt": "DISHA 2022 Young Professional Award plate", "src": "Fig-16, Fig-38"},
+    {"group": "2022", "kind": "award", "title": "Bengal Social Influencer Award 2022", "detail": "Best Impactful Social Media Professional", "org": "Freelance Foundation", "images": ["images/awards/aw-17.jpg", "images/awards/aw-20.jpg"], "alt": "Bengal Social Influencer Award certificate", "src": "Fig-17, Fig-20"},
+    {"group": "2022", "kind": "award", "title": "Aparajita Samman 2022", "detail": "Social Reforms", "org": "Angela Event", "images": ["images/awards/aw-02.jpg"], "alt": "Aparajita Samman 2022 trophy", "src": "Fig-02"},
+    {"group": "2022", "kind": "award", "title": "Wow Excellence Award", "when": "2021–22", "detail": "Rural Start-up Agri Business", "org": "Angela Event", "images": ["images/awards/aw-15.jpg"], "alt": "Wow Excellence Award plate", "src": "Fig-15"},
+    {"group": "2022", "kind": "training", "title": "Hands-on training on Fish Feed Formulation Technology", "when": "March 2022", "detail": "10-day certificate course", "org": "University of Kalyani", "images": ["images/awards/aw-23.jpg"], "alt": "Receiving a course certificate at the University of Kalyani", "src": "Fig-23"},
+
+    {"group": "2021", "kind": "award", "title": "India Icon Awards 2021", "detail": "Best One Stop Aquaculture Services and Consultancy in West Bengal", "org": "Blindwink", "images": ["images/awards/aw-12.jpg"], "alt": "India Icon Awards 2021 plaque for Aqua Doctor Solutions", "src": "Fig-12"},
+    {"group": "2021", "kind": "award", "title": "Bengal Leadership Award 2021", "detail": "Best One Stop Aquaculture Services and Consultant in West Bengal, 2020–21", "images": ["images/awards/aw-25.jpg"], "alt": "Receiving the Bengal Leadership Award on stage", "src": "Fig-25"},
+    {"group": "2021", "kind": "award", "title": "National Excellence Award 2021", "detail": "Outstanding achievements and remarkable contribution in the field of Biofloc fish farming", "org": "KTK Foundation, New Delhi", "images": ["images/awards/aw-18.jpg"], "alt": "KTK Foundation National Excellence Award certificate", "src": "Fig-18"},
+    {"group": "2021", "kind": "award", "title": "Education Pioneer Award 2021", "detail": "Best Professional Fisheries Trainer", "org": "Angela Event", "images": ["images/awards/aw-26.jpg"], "alt": "Holding the Education Pioneer Award certificate and trophy", "src": "Fig-26"},
+    {"group": "2021", "kind": "award", "title": "Indian Glory Awards 2021", "detail": "Rural Start-up of the Year", "org": "IGA", "images": ["images/awards/aw-04.jpg"], "alt": "Indian Glory Awards 2021 trophy", "src": "Fig-04"},
+    {"group": "2021", "kind": "award", "title": "The Entrepreneurship Conclave and Award", "when": "2020–21", "detail": "Best Entrepreneur of the Year", "org": "Bengal Chamber of Commerce", "images": ["images/awards/aw-05.jpg"], "alt": "Bengal Chamber Entrepreneurship Conclave award plaque", "src": "Fig-05"},
+    {"group": "2021", "kind": "award", "title": "Aparajita Samman 2021", "detail": "Social Reforms", "org": "Angela Event", "images": ["images/awards/aw-01.jpg"], "alt": "Aparajita Samman 2021 trophy", "src": "Fig-01"},
+
+    {"group": "2020", "kind": "award", "title": "The Global Human Rights Foundation Awards 2020", "detail": "Social Activity under Farming Sector", "org": "TGHRF, Govt. of Delhi", "images": ["images/awards/aw-06.jpg"], "alt": "Global Human Rights Foundation award plaque and medal", "src": "Fig-06"},
+    {"group": "2020", "kind": "award", "title": "Aparajita Samman 2020", "detail": "Social Reform", "org": "Angela Event", "images": ["images/awards/aw-09.jpg"], "alt": "Aparajita Samman 2020 framed certificate", "src": "Fig-09"},
+    {"group": "2020", "kind": "recognition", "title": "Bengal Aqua Expo 2020", "images": ["images/awards/aw-10.jpg"], "alt": "Bengal Aqua Expo 2020 memento", "src": "Fig-10"},
+
+    {"group": "2019", "kind": "award", "title": "Harit Puraskar 2019", "detail": "5th National Youth Convention", "org": "IGKV, Raipur; ICAR, Delhi", "images": ["images/awards/aw-07.jpg"], "alt": "Harit Puraskar 2019 framed plate", "src": "Fig-07"},
+    {"group": "2019", "kind": "recognition", "title": "The Aqua Show 2019", "org": "AQUAVET", "images": ["images/awards/aw-11.jpg"], "alt": "The Aqua Show 2019 fish-shaped memento", "src": "Fig-11"},
+
+    {"group": "undated", "kind": "award", "title": "Agri Icons 40 Under 40, Shaping the Future Awards", "detail": "Winner, Aqua Agriculture Changemaker category", "org": "Krishi Jagran", "images": ["images/a-kj40.jpg"], "alt": "Krishi Jagran Agri Icons 40 Under 40 winner card for Dr. Debtanu Barman", "src": "report"},
+    {"group": "undated", "kind": "award", "title": "MFOI Awards (Millionaire Farmer of India)", "org": "Krishi Jagran", "images": ["images/a-mfoi.jpg"], "alt": "Dr. Debtanu Barman with an award at the Krishi Jagran MFOI Awards", "src": "report"},
+    {"group": "undated", "kind": "startup", "title": "₹20 lakh grant to Barman Aqua Clinics Pvt Ltd", "images": ["images/r-grant.jpg"], "alt": "News graphic: Barman Aqua Clinics Pvt Ltd receives a grant of 20 lakh rupees", "src": "report"},
+    {"group": "undated", "kind": "startup", "title": "Incubated at Pusa Krishi", "detail": "Digital platform for aquaculture e-learning and e-commerce", "images": ["images/r-pusa.jpg"], "alt": "Incubated at Pusa Krishi announcement", "src": "report"},
+    {"group": "undated", "kind": "award", "title": "Innovation in Aqua Culture", "org": "MSME and Start Up Awards", "images": ["images/awards/aw-38.jpg"], "alt": "Innovation in Aqua Culture trophy for Aqua Doctor Solutions", "src": "Fig-37"},
+    {"group": "undated", "kind": "recognition", "title": "Distinguished Speaker", "org": "Amity University", "images": ["images/awards/aw-33.jpg"], "alt": "Distinguished Speaker memento plate", "src": "Fig-32"},
+    {"group": "undated", "kind": "recognition", "title": "Seminar, Department of Fisheries", "org": "Bangamata Sheikh Fojilatunnesa Mujib Science and Technology University, Jamalpur, Bangladesh", "images": ["images/awards/aw-13.jpg", "images/awards/aw-24.jpg"], "alt": "Seminar plaque and group photo at the university in Jamalpur, Bangladesh", "src": "Fig-13, Fig-24"},
+    {"group": "undated", "kind": "recognition", "title": "Certificate of Appreciation", "detail": "Resource person and delivered lectures", "org": "University of Kalyani, West Bengal", "images": ["images/awards/aw-08.jpg"], "alt": "University of Kalyani certificate of appreciation", "src": "Fig-08"}
+  ]
+}

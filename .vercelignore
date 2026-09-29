@@ -1,0 +1,10 @@
+# Client source documents: never publish these
+*.docx
+*.pdf
+ADS Registered Logo (1).jpeg
+
+# Working files, not needed on the live site
+_archive/
+src/
+build.py
+README.md
