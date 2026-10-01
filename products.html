@@ -53,15 +53,29 @@
 <symbol id="s-truck" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M2 7h17v15H2zM19 12h6l5 5v5h-11"/><circle cx="8" cy="24" r="3" fill="#fff"/><circle cx="24" cy="24" r="3" fill="#fff"/></symbol>
 <symbol id="s-box" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 11 16 5l11 6v12l-11 6-11-6z"/><path d="m5 11 11 6 11-6M16 17v12M10.5 8l11 6"/></symbol>
 <symbol id="s-pond" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3 18c3 0 3-2 6.5-2s3.5 2 6.5 2 3-2 6.5-2 3.5 2 6.5 2M3 24c3 0 3-2 6.5-2s3.5 2 6.5 2 3-2 6.5-2 3.5 2 6.5 2"/><path d="M10 10c3-4 8-4 11 0-3 4-8 4-11 0zM21 10l4-3v6z"/></symbol>
+<!-- core areas (home page): same 32 grid and stroke as the service icons -->
+<symbol id="c-trading" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h4l3.2 15.5h15.3L29 10H8.2"/><circle cx="11.5" cy="25.5" r="1.9"/><circle cx="23.5" cy="25.5" r="1.9"/><path d="M14 14.5h8"/></symbol>
+<symbol id="c-consult" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 6h17v11H11l-5 4v-4H4z"/><path d="M21 11h7v11h-2v4l-5-4h-7v-5"/><path d="M9 10.5h7M9 13.5h4"/></symbol>
+<symbol id="c-support" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 19v-4a10 10 0 0 1 20 0v4"/><path d="M6 18h3.5v7H7.5A1.5 1.5 0 0 1 6 23.5zM26 18h-3.5v7h2a1.5 1.5 0 0 0 1.5-1.5z"/><path d="M24.5 25c0 2.5-2.5 3.5-6.5 3.5"/><path d="M15 28.5h3"/></symbol>
+<symbol id="c-elearn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h20v14H6z"/><path d="M3 25h26l-1.5 2.5h-23z"/><path d="m16 11-6.5 2.7L16 16.4l6.5-2.7z"/><path d="M12 14.8v2.6c2.2 1.5 5.8 1.5 8 0v-2.6M22.5 13.7v3.5"/></symbol>
+<symbol id="c-insure" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M16 3 5 7v8c0 7 5 12 11 14 6-2 11-7 11-14V7z"/><path d="M9.5 16c2.6-3.4 7.4-3.9 10.5 0-3.1 3.9-7.9 3.4-10.5 0zM20 16l3-2.4v4.8z"/><circle cx="13" cy="15.3" r=".6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 5C6 6.4 3.5 9.6 3.5 13.6V19h6.5v-6.5H6.6c.2-2.6 1.8-4.6 4.2-5.6zM20.1 5c-3.6 1.4-6.1 4.6-6.1 8.6V19h6.5v-6.5h-3.4c.2-2.6 1.8-4.6 4.2-5.6z"/></symbol>
 </defs>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header" data-header>
   <div class="nav-scrim" data-nav-close hidden></div>
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
-      <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
-    </a>
+    <div class="brand-group">
+      <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
+        <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <!-- Matsya Sathi app link: site.js points this at MATSYA_APP_URL once the client supplies it -->
+      <a class="brand-app" href="index.html#matsya-sathi" data-matsya-app data-tip="Download Matsya Sathi App" aria-label="Download Matsya Sathi App">
+        <img src="images/matsya.webp" alt="Matsya Sathi logo" width="440" height="440">
+      </a>
+    </div>
 
     <nav class="nav" id="site-nav" aria-label="Main">
       <div class="nav-top">
@@ -81,7 +95,6 @@
         </li>
         <li><a href="services.html" data-nav="services">Our services</a></li>
         <li><a href="products.html" data-nav="products" aria-current="page">Our products</a></li>
-        <li><a href="achievements.html" data-nav="achievements">Achievements</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
         <li><a href="careers.html" data-nav="careers">Careers</a></li>
         <li><a href="join.html" data-nav="join">Join with us</a></li>
@@ -149,7 +162,7 @@
       <p class="lede">Send us a photo of your pond or fish on WhatsApp, or call Doctor-on-Call. Our team will guide you to the right product.</p>
       <div class="btn-row" style="margin-top:28px">
         <a class="btn btn-primary" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call +91 98754 02885</a>
-        <a class="btn btn-wa" href="#" data-wa><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn btn-wa" href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg>WhatsApp</a>
       </div>
     </div>
     <figure class="reveal"><div class="img-frame" style="aspect-ratio:16/10"><img src="images/g-expo.jpg" alt="Dr. Barman explaining products to visitors at an exhibition stall" loading="lazy"></div><figcaption class="img-caption">Explaining products to visitors at an exhibition stall.</figcaption></figure>
@@ -168,7 +181,7 @@
     <div class="cta-actions">
       <a class="cta-line" href="tel:+919875402885"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 98754 02885</span><svg><use href="#i-arrow"/></svg></a>
       <a class="cta-line" href="tel:+918334932266"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 83349 32266</span><svg><use href="#i-arrow"/></svg></a>
-      <a class="cta-line" href="#" data-wa><span class="cta-line-k">WhatsApp</span><span class="cta-line-v">Send photos of your pond</span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="https://wa.me/919875402885" data-wa><span class="cta-line-k">WhatsApp</span><span class="cta-line-v">Send photos of your pond</span><svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn-accent" href="join.html#enquiry">Send an enquiry<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -216,7 +229,7 @@
       <div class="foot-col foot-contact">
         <h2>Contact</h2>
         <ul>
-          <li><svg><use href="#i-pin"/></svg><span>1/11, Arabinda Nagar, Jadavpur,<br>Kolkata 700032, West Bengal</span></li>
+          <li><svg><use href="#i-pin"/></svg><span>Regus Horizon, Unit 1B - Horizon,<br>1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3,<br>Kolkata, West Bengal 700105</span></li>
           <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a></span></li>
           <li><svg><use href="#i-mail"/></svg><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></li>
           <li><svg><use href="#i-globe"/></svg><a href="https://www.efishtutor.com" target="_blank" rel="noopener">www.efishtutor.com</a></li>
@@ -228,16 +241,18 @@
       <span>© 2026 Aqua Doctor Solutions. Aqua Doctor Solutions® is a registered trademark.</span>
       <span class="bn" lang="bn">মাছের জগতের বিশ্বস্ত প্রতিষ্ঠান</span>
     </div>
+    <!-- Visitor counter: filled by site.js from /api/visits. Stays hidden if the API is not set up or fails. -->
+    <p class="visits" data-visits hidden>Total Number of Visitors: <b data-visits-count></b></p>
   </div>
 </footer>
 
 <nav class="m-bar" aria-label="Quick contact">
   <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
-  <a href="#" data-wa><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
   <a class="m-bar-primary" href="join.html#enquiry"><svg><use href="#i-mail"/></svg><span>Enquire</span></a>
 </nav>
 
-<a class="wa-float" href="#" data-wa aria-label="Chat with Aqua Doctor Solutions on WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="Chat with Aqua Doctor Solutions on WhatsApp"><svg><use href="#i-wa"/></svg></a>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
   <div class="lb-stage">

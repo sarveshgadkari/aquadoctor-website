@@ -21,7 +21,12 @@ Static HTML, CSS and JavaScript. No install needed.
 **After editing anything in `src/`, run `python build.py`.** Do not edit the root `*.html` files directly; they are overwritten by the build.
 
 - `css/site.css`: the whole design system. Brand colours (taken from the registered logo) are at the top.
-- `js/site.js`: navigation, hero slideshow, lightbox, filters, forms. `WA_NUMBER` sets the WhatsApp number.
+- `js/site.js`: navigation, sliders, lightbox, filters, forms. The settings at the top of the file:
+  - `WA_NUMBER`: the WhatsApp number.
+  - `MATSYA_APP_URL`: the Matsya Sathi app download (an `.apk` file path, or a Play Store / App Store link). While it is empty, the header logo and the home page button scroll to the app section.
+  - `HERO_VIDEO_SRC`: the aerator video for the home page slideshow (default `images/hero/aerator.mp4`). Until the file exists, the slide shows the poster photo.
+  - `VISITOR_API`: the visitor counter endpoint (`/api/visits`).
+- `api/visits.js`: the visitor counter (a Vercel serverless function, see below).
 - `js/products.js`: the product catalogue. Add a product by adding one line.
 - `images/ads-logo.jpg`: an unmodified copy of `ADS Registered Logo (1).jpeg`.
 - `images/awards/`: award photographs exported from the awards document (resized only, never cropped).
@@ -29,6 +34,14 @@ Static HTML, CSS and JavaScript. No install needed.
 
 ## Content rules used
 All facts come from the three client documents. Nothing was invented. Places where content is still missing are marked with an orange **CLIENT CONTENT REQUIRED** tag.
+
+## Visitor counter setup (Vercel)
+The footer shows "Total Number of Visitors: N". It stays hidden until these steps are done, and whenever the counter cannot be reached. It also stays hidden when the site is opened as a local file.
+1. In the Vercel dashboard, open the project, go to **Storage** (Marketplace) and create a free **Upstash Redis** database. Connect it to this project.
+2. Make sure the project has the two environment variables `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (Settings → Environment Variables). Connecting the database usually adds them; if not, copy them from the Upstash console ("REST API" section).
+3. Redeploy the project (Deployments → … → Redeploy) so the function picks up the variables.
+
+Each browser session counts once: the first page view sends a `POST` (adds one), later pages only `GET` the total.
 
 ## Not built yet (after approval)
 Form submission (forms currently show a confirmation only), video embeds, Google Map, social media links, app store link.

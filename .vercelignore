@@ -8,3 +8,8 @@ _archive/
 src/
 build.py
 README.md
+
+# Brief and layout references: never publish
+ads-homepage-assets/
+_brief-reference/
+VSCODE_PROMPT_*.md

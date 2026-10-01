@@ -1,9 +1,16 @@
 <header class="site-header" data-header>
   <div class="nav-scrim" data-nav-close hidden></div>
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
-      <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
-    </a>
+    <div class="brand-group">
+      <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
+        <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <!-- Matsya Sathi app link: site.js points this at MATSYA_APP_URL once the client supplies it -->
+      <a class="brand-app" href="index.html#matsya-sathi" data-matsya-app data-tip="Download Matsya Sathi App" aria-label="Download Matsya Sathi App">
+        <img src="images/matsya.webp" alt="Matsya Sathi logo" width="440" height="440">
+      </a>
+    </div>
 
     <nav class="nav" id="site-nav" aria-label="Main">
       <div class="nav-top">
@@ -23,7 +30,6 @@
         </li>
         <li><a href="services.html" data-nav="services">Our services</a></li>
         <li><a href="products.html" data-nav="products">Our products</a></li>
-        <li><a href="achievements.html" data-nav="achievements">Achievements</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
         <li><a href="careers.html" data-nav="careers">Careers</a></li>
         <li><a href="join.html" data-nav="join">Join with us</a></li>

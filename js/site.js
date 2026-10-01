@@ -2,6 +2,9 @@
 (function () {
   "use strict";
   var WA_NUMBER = "919875402885"; // confirm the WhatsApp number with ADS
+  var MATSYA_APP_URL = "";          // CLIENT TO SUPPLY: APK file path, Play Store or App Store link
+  var HERO_VIDEO_SRC = "images/hero/aerator.mp4"; // CLIENT TO SUPPLY: aerator video file
+  var VISITOR_API = "/api/visits";  // visitor counter endpoint (Vercel function api/visits.js)
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
@@ -41,61 +44,230 @@
     reveals.forEach(function (r) { ro.observe(r); });
   } else { reveals.forEach(function (r) { r.classList.add("in"); }); }
 
-  /* ---------- home hero slideshow ---------- */
+  /* ---------- Matsya Sathi app links (header logo + home page store button) ---------- */
+  $$("[data-matsya-app]").forEach(function (a) {
+    if (MATSYA_APP_URL) {
+      a.href = MATSYA_APP_URL;
+      if (/\.apk([?#].*)?$/i.test(MATSYA_APP_URL)) { a.setAttribute("download", ""); a.removeAttribute("target"); }
+      else { a.target = "_blank"; a.rel = "noopener"; }
+    } else if (document.getElementById("matsya-sathi")) {
+      a.href = "#matsya-sathi"; // no link yet: on the home page, scroll to the app section
+    }
+  });
+  $$("[data-matsya-pending]").forEach(function (el) { el.hidden = !!MATSYA_APP_URL; });
+
+  /* small helper: horizontal swipe on touch devices */
+  function onSwipe(el, left, right, start, end) {
+    var x0 = null, y0 = null;
+    el.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; if (start) start(); }, { passive: true });
+    el.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) left(); else right(); }
+      if (end) end();
+    }, { passive: true });
+  }
+  /* small helper: left / right arrow keys while focus is inside an element */
+  function onArrows(el, prev, next) {
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    });
+  }
+
+  /* ---------- home hero: full-width slideshow (5 photos + aerator video) ---------- */
   var hero = $("[data-hero]");
   if (hero) {
     var slides = $$(".hero-slide", hero), bars = $$(".hero-progress button", hero);
-    var tTitle = $("[data-hero-title]", hero), tText = $("[data-hero-text]", hero), tCount = $("[data-hero-count]", hero);
-    var idx = 0, timer = null, MS = 7000;
-    hero.style.setProperty("--slide-ms", MS + "ms");
+    var idx = 0, tm = null, MS = 6000, remaining = MS, startedAt = 0, paused = false;
+    var vSlide = $("[data-video]", hero), video = vSlide ? $("video", vSlide) : null;
+    var videoOk = !!(video && HERO_VIDEO_SRC), vPlaying = false;
+    if (reduce) hero.classList.add("is-static");
+    // watchdog: if the video has not started within one slide's time (missing file, slow or blocked load),
+    // treat it as a photo slide and move on, so the slideshow never gets stuck
+    function armWatchdog(ms) {
+      clearTimeout(tm); remaining = ms; startedAt = Date.now();
+      if (!paused) tm = setTimeout(function () { if (!vPlaying) { videoOk = false; go(idx + 1); } }, ms);
+    }
+    function videoActive() { return videoOk && !reduce && slides[idx] === vSlide; }
+    function schedule(ms) {
+      clearTimeout(tm); remaining = ms; startedAt = Date.now();
+      if (!paused && !reduce) tm = setTimeout(function () { go(idx + 1); }, ms);
+    }
+    function restartBar(ms) {
+      var b = bars[idx]; if (!b) return;
+      hero.style.setProperty("--slide-ms", ms + "ms");
+      b.classList.remove("is-on"); void b.offsetWidth; b.classList.add("is-on");
+    }
+    function videoFailed() { videoOk = false; if (slides[idx] === vSlide) { restartBar(MS); schedule(MS); } }
+    if (video) {
+      // a missing or broken file simply leaves the poster image showing, like a photo slide
+      video.addEventListener("error", videoFailed);
+      video.addEventListener("ended", function () { if (slides[idx] === vSlide) go(idx + 1); });
+      video.addEventListener("playing", function () { vPlaying = true; if (slides[idx] === vSlide) clearTimeout(tm); });
+      video.addEventListener("loadedmetadata", function () { if (videoActive() && isFinite(video.duration)) restartBar(video.duration * 1000); });
+    }
     function go(n) {
+      if (video && slides[idx] === vSlide) video.pause();
       idx = (n + slides.length) % slides.length;
       slides.forEach(function (s, i) { s.classList.toggle("is-on", i === idx); s.setAttribute("aria-hidden", i === idx ? "false" : "true"); });
       bars.forEach(function (b, i) {
         b.classList.remove("is-on"); b.classList.toggle("is-done", i < idx);
         b.setAttribute("aria-current", i === idx ? "true" : "false");
       });
-      void hero.offsetWidth; // restart progress animation
-      if (bars[idx]) bars[idx].classList.add("is-on");
-      var s = slides[idx];
-      tTitle.textContent = s.dataset.title; tText.textContent = s.dataset.text;
-      tCount.innerHTML = "<b>" + String(idx + 1).padStart(2, "0") + "</b> / " + String(slides.length).padStart(2, "0");
+      restartBar(MS);
+      clearTimeout(tm);
+      if (reduce) return; // no autoplay and no video playback with reduced motion
+      if (videoActive()) {
+        vPlaying = false;
+        if (!video.getAttribute("src")) video.src = HERO_VIDEO_SRC; // loads only when its slide is shown
+        try { video.currentTime = 0; } catch (err) {}
+        if (!paused) { var p = video.play(); if (p && p.catch) p.catch(videoFailed); }
+        armWatchdog(MS);
+      } else {
+        schedule(MS);
+      }
     }
-    function play() { stop(); if (reduce) return; timer = setInterval(function () { go(idx + 1); }, MS); hero.classList.remove("is-paused"); }
-    function stop() { if (timer) { clearInterval(timer); timer = null; } hero.classList.add("is-paused"); }
-    $("[data-hero-prev]", hero).addEventListener("click", function () { go(idx - 1); play(); });
-    $("[data-hero-next]", hero).addEventListener("click", function () { go(idx + 1); play(); });
-    bars.forEach(function (b, i) { b.addEventListener("click", function () { go(i); play(); }); });
-    var media = $(".hero-media", hero);
-    media.addEventListener("mouseenter", stop); media.addEventListener("mouseleave", play);
-    media.addEventListener("focusin", stop); media.addEventListener("focusout", play);
-    go(0); play();
+    function pause() {
+      if (paused) return;
+      paused = true; hero.classList.add("is-paused");
+      clearTimeout(tm); remaining = Math.max(remaining - (Date.now() - startedAt), 0);
+      if (videoActive()) video.pause();
+    }
+    function resume() {
+      if (!paused) return;
+      paused = false; hero.classList.remove("is-paused");
+      if (reduce) return;
+      if (videoActive()) {
+        var p = video.play(); if (p && p.catch) p.catch(videoFailed);
+        if (!vPlaying) armWatchdog(Math.max(remaining, 500));
+      } else schedule(Math.max(remaining, 500));
+    }
+    $("[data-hero-prev]", hero).addEventListener("click", function () { go(idx - 1); });
+    $("[data-hero-next]", hero).addEventListener("click", function () { go(idx + 1); });
+    bars.forEach(function (b, i) { b.addEventListener("click", function () { go(i); }); });
+    // pause while the pointer is over the slideshow card or focus is in its controls; swipe on the card
+    var heroMedia = $(".hero-media", hero) || hero;
+    heroMedia.addEventListener("mouseenter", pause);
+    heroMedia.addEventListener("mouseleave", resume);
+    heroMedia.addEventListener("focusin", pause);
+    heroMedia.addEventListener("focusout", function (e) { if (!heroMedia.contains(e.relatedTarget)) resume(); });
+    onSwipe(heroMedia, function () { go(idx + 1); }, function () { go(idx - 1); }, pause, resume);
+    onArrows($(".hero-controls", hero), function () { go(idx - 1); }, function () { go(idx + 1); });
+    go(0);
   }
 
-  /* ---------- home hero: rising bubbles ---------- */
-  var bubbleBox = $(".hero-bubbles");
-  if (bubbleBox && !reduce) {
-    var heroEl = bubbleBox.parentNode;
-    var count = window.innerWidth < 640 ? 14 : 30;
-    var rnd = function (a, b) { return a + Math.random() * (b - a); };
-    for (var bi = 0; bi < count; bi++) {
-      var bub = document.createElement("span");
-      // mostly small bubbles, a few medium, the odd large one, as in real water
-      var r = Math.random();
-      var size = r < 0.4 ? rnd(3, 6) : r < 0.85 ? rnd(8, 16) : rnd(18, 30);
-      bub.className = size < 7 ? "bubble is-tiny" : "bubble";
-      bub.style.setProperty("--x", rnd(2, 98).toFixed(1) + "%");
-      bub.style.setProperty("--s", size.toFixed(1) + "px");
-      // bigger bubbles rise a little faster
-      bub.style.setProperty("--d", (size > 16 ? rnd(9, 14) : rnd(12, 22)).toFixed(1) + "s");
-      bub.style.setProperty("--delay", (-rnd(0, 22)).toFixed(1) + "s");
-      bub.style.setProperty("--sway", rnd(-22, 22).toFixed(0) + "px");
-      bub.style.setProperty("--sway-d", rnd(2, 4.5).toFixed(1) + "s");
-      bub.style.setProperty("--o", rnd(.7, 1).toFixed(2));
-      bubbleBox.appendChild(bub);
+  /* ---------- key numbers: count up once when scrolled into view ---------- */
+  var factsBox = $(".facts-section");
+  if (factsBox && !reduce && "IntersectionObserver" in window) {
+    var counters = $$("[data-count]", factsBox);
+    var countIO = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      countIO.disconnect();
+      counters.forEach(function (el) {
+        var target = Number(el.dataset.count), suffix = el.dataset.suffix || "", finalText = el.textContent;
+        // screen readers get the final figure; the animated digits are hidden from them
+        var shown = document.createElement("span"), sr = document.createElement("span");
+        shown.setAttribute("aria-hidden", "true"); sr.className = "sr"; sr.textContent = finalText;
+        el.textContent = ""; el.appendChild(shown); el.appendChild(sr);
+        var t0 = null, DUR = 1600;
+        function step(t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / DUR), eased = 1 - Math.pow(1 - k, 3);
+          shown.textContent = k < 1 ? Math.round(target * eased).toLocaleString("en-IN") + suffix : finalText;
+          if (k < 1) requestAnimationFrame(step);
+        }
+        shown.textContent = "0" + suffix;
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.35 });
+    countIO.observe(factsBox);
+  }
+
+  /* ---------- company recognition slider (no auto-advance) ---------- */
+  var rec = $("[data-rec]");
+  if (rec) {
+    var rTexts = $$(".rec-text", rec), rPhotos = $$(".rec-photo", rec), rCount = $("[data-rec-count]", rec), ri = 0;
+    function recGo(n) {
+      ri = (n + rTexts.length) % rTexts.length;
+      rTexts.forEach(function (t, i) { t.hidden = i !== ri; t.classList.toggle("is-on", i === ri); });
+      rPhotos.forEach(function (p, i) { p.hidden = i !== ri; p.classList.toggle("is-on", i === ri); });
+      rCount.textContent = (ri + 1) + " / " + rTexts.length;
     }
-    var setRise = function () { bubbleBox.style.setProperty("--rise", -(heroEl.offsetHeight + 60) + "px"); };
-    setRise(); window.addEventListener("resize", setRise);
+    $("[data-rec-prev]", rec).addEventListener("click", function () { recGo(ri - 1); });
+    $("[data-rec-next]", rec).addEventListener("click", function () { recGo(ri + 1); });
+    onArrows(rec, function () { recGo(ri - 1); }, function () { recGo(ri + 1); });
+    onSwipe($(".rec-photos", rec), function () { recGo(ri + 1); }, function () { recGo(ri - 1); });
+  }
+
+  /* ---------- supported by: looping logo carousel ---------- */
+  var lc = $("[data-logo-carousel]");
+  if (lc) {
+    var track = $(".lc-track", lc), busy = false, lcTimer = null;
+    var EASE = "transform .6s cubic-bezier(.2,.7,.2,1)";
+    function stepPx() { return track.firstElementChild ? track.firstElementChild.getBoundingClientRect().width : 0; }
+    function settle(cb) {
+      var done = false;
+      function fin() { if (done) return; done = true; track.removeEventListener("transitionend", fin); cb(); }
+      track.addEventListener("transitionend", fin);
+      setTimeout(fin, 800); // in case transitionend does not fire (background tab)
+    }
+    function lcNext() {
+      if (busy) return;
+      if (reduce) { track.appendChild(track.firstElementChild); return; }
+      busy = true;
+      track.style.transition = EASE;
+      track.style.transform = "translateX(" + (-stepPx()) + "px)";
+      settle(function () {
+        track.style.transition = "none";
+        track.appendChild(track.firstElementChild); // the first logo moves to the end: an endless loop
+        track.style.transform = "translateX(0)";
+        busy = false;
+      });
+    }
+    function lcPrev() {
+      if (busy) return;
+      if (reduce) { track.insertBefore(track.lastElementChild, track.firstElementChild); return; }
+      busy = true;
+      track.style.transition = "none";
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      track.style.transform = "translateX(" + (-stepPx()) + "px)";
+      void track.offsetWidth;
+      track.style.transition = EASE;
+      track.style.transform = "translateX(0)";
+      settle(function () { busy = false; });
+    }
+    function lcStop() { if (lcTimer) { clearInterval(lcTimer); lcTimer = null; } }
+    function lcPlay() { lcStop(); if (!reduce) lcTimer = setInterval(lcNext, 3000); }
+    $("[data-lc-next]", lc).addEventListener("click", function () { lcNext(); });
+    $("[data-lc-prev]", lc).addEventListener("click", function () { lcPrev(); });
+    lc.addEventListener("mouseenter", lcStop);
+    lc.addEventListener("mouseleave", function () { if (!lc.contains(document.activeElement)) lcPlay(); });
+    lc.addEventListener("focusin", lcStop);
+    lc.addEventListener("focusout", function (e) { if (!lc.contains(e.relatedTarget)) lcPlay(); });
+    onArrows(lc, lcPrev, lcNext);
+    onSwipe($(".lc-viewport", lc), lcNext, lcPrev, lcStop, lcPlay);
+    document.addEventListener("visibilitychange", function () { if (document.hidden) lcStop(); else lcPlay(); });
+    lcPlay();
+  }
+
+  /* ---------- footer: visitor counter ---------- */
+  var visitsEl = $("[data-visits]");
+  if (visitsEl && VISITOR_API && /^https?:$/.test(location.protocol) && window.fetch) {
+    var counted = false;
+    try { counted = sessionStorage.getItem("ads-visit-counted") === "1"; } catch (err) {}
+    // the first page view of a browser session counts the visit; later pages only read the total
+    fetch(VISITOR_API, { method: counted ? "GET" : "POST", headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("visits " + r.status); return r.json(); })
+      .then(function (d) {
+        var n = Number(d && d.total);
+        if (!(n > 0)) return; // stay hidden: never show "0"
+        if (!counted) { try { sessionStorage.setItem("ads-visit-counted", "1"); } catch (err) {} }
+        $("[data-visits-count]", visitsEl).textContent = n.toLocaleString("en-IN");
+        visitsEl.hidden = false;
+      })
+      .catch(function () { /* API missing or failing: the line stays hidden */ });
   }
 
   /* ---------- lightbox (awards, gallery, press) ---------- */
