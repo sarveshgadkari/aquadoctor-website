@@ -1,0 +1,10 @@
+Team photos (client Drive: Our Team). Use exactly these names (.jpg .jpeg .png or .webp):
+01-debtanu-barman
+02-md-reazuddin
+03-shantanu-acharya
+04-sourav-maity
+05-mangaldip-chandra
+06-prachi-pandey
+07-sanghamitra-chakraborty
+08-krishnendu-mandal
+Then run: python build.py

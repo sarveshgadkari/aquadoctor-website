@@ -1,0 +1,4 @@
+Home page slideshow (client Drive: Homepage_Slideshow). Every photo/video here is shown, in file-name order.
+Add the alt text for each new file in src/data/hero_alts.json.
+The aerator video: name it hero-02a-aerator.mp4 so it plays as slide 3.
+Then run: python build.py

@@ -60,6 +60,13 @@
 <symbol id="c-elearn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h20v14H6z"/><path d="M3 25h26l-1.5 2.5h-23z"/><path d="m16 11-6.5 2.7L16 16.4l6.5-2.7z"/><path d="M12 14.8v2.6c2.2 1.5 5.8 1.5 8 0v-2.6M22.5 13.7v3.5"/></symbol>
 <symbol id="c-insure" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M16 3 5 7v8c0 7 5 12 11 14 6-2 11-7 11-14V7z"/><path d="M9.5 16c2.6-3.4 7.4-3.9 10.5 0-3.1 3.9-7.9 3.4-10.5 0zM20 16l3-2.4v4.8z"/><circle cx="13" cy="15.3" r=".6" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 5C6 6.4 3.5 9.6 3.5 13.6V19h6.5v-6.5H6.6c.2-2.6 1.8-4.6 4.2-5.6zM20.1 5c-3.6 1.4-6.1 4.6-6.1 8.6V19h6.5v-6.5h-3.4c.2-2.6 1.8-4.6 4.2-5.6z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+<symbol id="i-eye-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.3-6 9-6 9 6 9 6-3.3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+<symbol id="i-target-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></symbol>
 </defs>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
@@ -70,11 +77,6 @@
       <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
         <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
       </a>
-      <span class="brand-divider" aria-hidden="true"></span>
-      <!-- Matsya Sathi app link: site.js points this at MATSYA_APP_URL once the client supplies it -->
-      <a class="brand-app" href="index.html#matsya-sathi" data-matsya-app data-tip="Download Matsya Sathi App" aria-label="Download Matsya Sathi App">
-        <img src="images/matsya.webp" alt="Matsya Sathi logo" width="440" height="440">
-      </a>
     </div>
 
     <nav class="nav" id="site-nav" aria-label="Main">
@@ -84,15 +86,7 @@
       </div>
       <ul class="nav-list">
         <li><a href="index.html" data-nav="home">Home</a></li>
-        <li class="has-sub">
-          <a href="about.html" data-nav="about" aria-current="page">About us<svg class="caret" aria-hidden="true"><use href="#i-down"/></svg></a>
-          <ul class="sub">
-            <li><a href="about.html#company"><b>Company overview</b><span>Who we are, where we work</span></a></li>
-            <li><a href="about.html#leadership"><b>Leadership and team</b><span>Dr. Debtanu Barman and the ADS team</span></a></li>
-            <li><a href="about.html#journey"><b>Our journey</b><span>From 2019 to today</span></a></li>
-            <li><a href="impact.html" data-nav="impact"><b>Impact and projects</b><span>Interventions, Adopt the Village</span></a></li>
-          </ul>
-        </li>
+        <li><a href="about.html" data-nav="about" aria-current="page">About us</a></li>
         <li><a href="services.html" data-nav="services">Our services</a></li>
         <li><a href="products.html" data-nav="products">Our products</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
@@ -102,16 +96,19 @@
       <div class="nav-bottom">
         <a class="btn btn-primary btn-block" href="join.html#enquiry">Contact us<svg><use href="#i-arrow"/></svg></a>
         <dl class="nav-contact">
-          <div><dt>Doctor-on-Call</dt><dd><a href="tel:+919875402885">+91 98754 02885</a></dd></div>
+          <div><dt>WhatsApp</dt><dd><a class="num-ic" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg class="ic-wa" aria-hidden="true"><use href="#i-wa"/></svg>+91 98754 02885</a></dd></div>
+          <div><dt>Call (Doctor-on-Call)</dt><dd><a class="num-ic" href="tel:+919875402885"><svg aria-hidden="true"><use href="#i-phone"/></svg>+91 98754 02885</a></dd></div>
           <div><dt>Email</dt><dd><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></dd></div>
         </dl>
       </div>
     </nav>
 
     <div class="header-actions">
-      <a class="header-call" href="tel:+919875402885"><span>Doctor-on-Call</span>+91 98754 02885</a>
+      <div class="header-nums">
+        <a class="hn hn-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener" aria-label="WhatsApp +91 98754 02885"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>+91 98754 02885</span></a>
+        <a class="hn hn-call" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>+91 98754 02885</span></a>
+      </div>
       <a class="btn btn-primary header-cta" href="join.html#enquiry">Contact us</a>
-      <a class="icon-btn header-phone" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
       <button class="icon-btn menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-open><svg><use href="#i-menu"/></svg><span class="sr">Open menu</span></button>
     </div>
   </div>
@@ -132,38 +129,29 @@
     <li><a href="#company">Company overview</a></li>
     <li><a href="#leadership">Leadership</a></li>
     <li><a href="#journey">Our journey</a></li>
-    <li><a href="#group">Wings of ADS</a></li>
     <li><a href="#team">Our team</a></li>
-    <li><a href="#mission">Mission and vision</a></li>
+    <li><a href="#mission">Vision and mission</a></li>
   </ul></div>
 </nav>
 
 <!-- ============ COMPANY ============ -->
 <section class="section" id="company" aria-labelledby="company-h">
   <div class="wrap">
-    <div class="split split-6-5">
-      <div class="reveal">
-        <p class="label">Company overview</p>
-        <h2 id="company-h" style="margin-bottom:24px">Who we are</h2>
-        <div class="prose">
-          <p>Aqua Doctor Solutions, established on 14th July 2019, works actively in the East and North-Eastern states of India. We provide end-to-end aquaculture support, including quality inputs, fish health management, water quality solutions, technical advisory, consultation and farm-level guidance, up to market linkage.</p>
-          <p>We collaborate with fish farmers, hatcheries and aquaculture input partners to promote sustainable practices, healthy fish production and improved farmer livelihoods.</p>
-        </div>
-        <dl class="deflist">
-          <div><dt>Established</dt><dd>14th July 2019, Kolkata, West Bengal</dd></div>
-          <div><dt>Where we work</dt><dd>East and North-Eastern states of India; footprints in Bangladesh, Bhutan and Nepal</dd></div>
-          <div><dt>Who we serve</dt><dd>Fish farmers, hatcheries, FFPOs and SHGs, aquapreneurs, fisheries institutes and KVKs</dd></div>
-          <div><dt>Head office</dt><dd>Regus Horizon, Unit 1B - Horizon, 1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3, Kolkata, West Bengal 700105</dd></div>
-        </dl>
+    <div class="company-full reveal">
+      <p class="label">Company overview</p>
+      <h2 id="company-h" style="margin-bottom:24px">Who we are</h2>
+      <div class="prose">
+        <p>Aqua Doctor Solutions, established on 14th July 2019, works actively in the East and North-Eastern states of India. We provide end-to-end aquaculture support, including quality inputs, fish health management, water quality solutions, technical advisory, consultation and farm-level guidance, up to market linkage.</p>
+        <p>We collaborate with fish farmers, hatcheries and aquaculture input partners to promote sustainable practices, healthy fish production and improved farmer livelihoods.</p>
       </div>
-      <div class="reveal">
-        <figure>
-          <div class="img-frame" style="aspect-ratio:4/3"><img src="images/v-visit.jpg" alt="Aqua Doctor Solutions team members on a farm visit with local farmers" loading="lazy"></div>
-          <figcaption class="img-caption">The ADS team on a farm visit with farmers.</figcaption>
-        </figure>
-        <p class="pull" style="margin-top:36px">“Today, Aqua Doctor Solutions &amp; Aqua Clinic stands as the foremost One Shop – One Stop Solution for All Modern Aquaculture Services in Eastern India.”</p>
-        <p class="mono muted" style="margin-top:12px">ADS Annual Report 2025</p>
-      </div>
+      <dl class="deflist">
+        <div><dt>Established</dt><dd>14th July 2019, Kolkata, West Bengal</dd></div>
+        <div><dt>Where we work</dt><dd>East and North-Eastern states of India; footprints in Bangladesh, Bhutan and Nepal</dd></div>
+        <div><dt>Who we serve</dt><dd>Fish farmers, hatcheries, FFPOs and SHGs, aquapreneurs, fisheries institutes and KVKs</dd></div>
+        <div><dt>Head office</dt><dd>Regus Horizon, Unit 1B - Horizon, 1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3, Kolkata, West Bengal 700105</dd></div>
+      </dl>
+      <p class="pull" style="margin-top:40px">“Today, Aqua Doctor Solutions &amp; Aqua Clinic stands as the foremost One Shop – One Stop Solution for All Modern Aquaculture Services in Eastern India.”</p>
+      <p class="mono muted" style="margin-top:12px">ADS Annual Report 2025</p>
     </div>
 
     <div style="margin-top:clamp(56px,6vw,96px)" class="reveal">
@@ -198,7 +186,8 @@
 <section class="section bg-surface" id="leadership" aria-labelledby="ceo-h">
   <div class="wrap ceo">
     <aside class="ceo-side reveal">
-      <div class="img-frame"><img src="images/ceo-portrait.jpg" alt="Dr. Debtanu Barman speaking at a conference" loading="lazy" style="object-position:50% 25%"></div>
+      <!-- Photo for a few seconds, then the 6 years video in the same place (files: images/about/ceo-photo.jpg, images/about/ceo-6-years.mp4) -->
+      <div class="ceo-media"><div class="img-frame"><img class="cm-photo" src="images/ceo-portrait.jpg" alt="Dr. Debtanu Barman, Founder and CEO" loading="lazy"></div><p class="img-caption"><span class="flag">Client content required</span> 6 years video: put the file at <code>images/about/ceo-6-years.mp4</code></p></div>
       <dl>
         <div><dt>Role</dt><dd>Founder and Chief Executive Officer</dd></div>
         <div><dt>Known as</dt><dd>The “Aqua Doctor”</dd></div>
@@ -240,11 +229,15 @@
 <!-- ============ JOURNEY ============ -->
 <section class="section" id="journey" aria-labelledby="journey-h">
   <div class="wrap split split-5-7">
-    <div class="reveal sticky-col">
+    <div class="reveal">
       <p class="label">Our journey</p>
       <h2 id="journey-h" style="margin-bottom:20px">From a personal investment in Kolkata to a group of seven organisations</h2>
       <p class="muted">Milestones taken from the 2025 annual report and the awards record.</p>
       <div class="note-bar" style="margin-top:24px"><span class="flag">To confirm</span><span>ADS to confirm the year of the NFDB grant and add milestones for new products, services, partnerships and customer growth.</span></div>
+      <div class="journey-videos">
+        <figure class="vslot vslot-empty"><div class="video"><img src="images/hero-village.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg><use href="#i-play"/></svg></span><div class="video-meta"><span>Our journey: video 1</span><span class="mono">Video to be added</span></div></div><figcaption class="img-caption"><span class="flag">Client content required</span> Put the file at <code>images/about/journey-1.mp4</code></figcaption></figure>
+        <figure class="vslot vslot-empty"><div class="video"><img src="images/g-conf.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg><use href="#i-play"/></svg></span><div class="video-meta"><span>Our journey: video 2</span><span class="mono">Video to be added</span></div></div><figcaption class="img-caption"><span class="flag">Client content required</span> Put the file at <code>images/about/journey-2.mp4</code></figcaption></figure>
+      </div>
     </div>
     <ol class="timeline reveal">
       <li><span class="yr">2019<small>14th July</small></span><div><h3>Aqua Doctor Solutions &amp; Aqua Clinic founded</h3><p>Established in Kolkata, West Bengal, funded through Dr. Barman's personal investment. The same year he received the Harit Puraskar at the 5th National Youth Convention.</p></div></li>
@@ -258,26 +251,6 @@
   </div>
 </section>
 
-<!-- ============ GROUP ============ -->
-<section class="section bg-surface" id="group" aria-labelledby="group-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="label">Wings of ADS</p><h2 id="group-h">The ADS group of companies</h2></div>
-      <p>Seven organisations, each covering one part of the aquaculture value chain, from trading and training to media and CSR.</p>
-    </div>
-    <div class="wings reveal">
-      <div class="wing hub"><span class="mono">Group</span><div><b>ADS Group of Companies</b><span class="role">Grow with fish, grow with Aqua Doctor Solutions</span></div></div>
-      <div class="wing"><span class="mono">01</span><b>Aqua Doctor Solutions</b><span class="role">Trading company</span></div>
-      <div class="wing"><span class="mono">02</span><b>Aqua One Center Kolkata</b><span class="role">NFDB and MANAGE approved fisheries institute</span></div>
-      <div class="wing"><span class="mono">03</span><b>Barman Aqua Clinic</b><span class="role">Cleantech and tech-based company</span></div>
-      <div class="wing"><span class="mono">04</span><b>ADS LLP</b><span class="role">Digital platform for fisheries</span></div>
-      <div class="wing"><span class="mono">05</span><b>Fishery News Bangla</b><span class="role">Media house</span></div>
-      <div class="wing"><span class="mono">06</span><b>Maa Tara Enterprise</b><span class="role">Skill development centre</span></div>
-      <div class="wing"><span class="mono">07</span><b>Aqua World, Registered Trust</b><span class="role">CSR activities</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ TEAM ============ -->
 <section class="section" id="team" aria-labelledby="team-h">
   <div class="wrap">
@@ -285,42 +258,37 @@
       <div><p class="label">Our team</p><h2 id="team-h">Team of Aqua Doctor Solutions</h2></div>
       <p>The people farmers and partners work with: on the phone, in the office, at the warehouse and at the pond side.</p>
     </div>
-    <div class="team reveal">
-      <div class="member lead"><div class="img-frame"><img src="images/t-debtanu.jpg" alt="Dr. Debtanu Barman" loading="lazy"></div><div><b>Dr. Debtanu Barman</b><span>Founder and CEO</span></div></div>
-      <div class="member"><div class="img-frame"><img src="images/t-reaz.jpg" alt="MD. Reazuddin" loading="lazy"></div><b>MD. Reazuddin</b><span>Manager</span></div>
-      <div class="member"><div class="img-frame"><img src="images/t-subha.jpg" alt="Subha Das" loading="lazy"></div><b>Subha Das</b><span>Head of Accounts</span></div>
-      <div class="member"><div class="img-frame"><img src="images/t-sudipto.jpg" alt="Sudipto Halder" loading="lazy"></div><b>Sudipto Halder</b><span>Technical Assistant</span></div>
-      <div class="member"><div class="img-frame"><img src="images/t-koushick.jpg" alt="Koushick Mondal" loading="lazy"></div><b>Koushick Mondal</b><span>Logistics Manager</span></div>
-      <div class="member"><div class="img-frame"><img src="images/t-souvik.jpg" alt="Souvik Naskar" loading="lazy"></div><b>Souvik Naskar</b><span>Stock Manager</span></div>
-      <div class="member"><div class="img-frame"><img src="images/t-soumodip.jpg" alt="Soumodip Bhattacharya" loading="lazy"></div><b>Soumodip Bhattacharya</b><span>Office Coordinator cum Accounts</span></div>
-    </div>
-    <div class="note-bar"><span class="flag">Optional</span><span>The content brief asks for each team member's responsibilities and department. ADS can supply one line per person; the layout has room for it under each name.</span></div>
+    <!-- Generated by build.py from src/data/team.json. Photos: images/team/01-debtanu-barman.jpg ... 08-krishnendu-mandal.jpg -->
+    <ul class="team reveal"><li class="member lead"><div class="img-frame"><img src="images/t-debtanu.jpg" alt="Dr. Debtanu Barman, Founder and CEO" loading="lazy"></div><b>Dr. Debtanu Barman</b><span>Founder and CEO</span></li><li class="member"><div class="img-frame"><img src="images/team/02-md-reazuddin.jpg" alt="Md. Reazuddin, Operation Head (Depo &amp; Godown)" loading="lazy"></div><b>Md. Reazuddin</b><span>Operation Head (Depo &amp; Godown)</span></li><li class="member"><div class="img-frame"><img src="images/team/03-shantanu-acharya.jpg" alt="Shantanu Acharya, Team Leader (Technical)" loading="lazy"></div><b>Shantanu Acharya</b><span>Team Leader (Technical)</span></li><li class="member"><div class="img-frame"><img src="images/team/04-sourav-maity.jpg" alt="Sourav Maity, Project Director (Technical)" loading="lazy"></div><b>Sourav Maity</b><span>Project Director (Technical)</span></li><li class="member"><div class="img-frame"><img src="images/team/05-mangaldip-chandra.jpg" alt="Mangaldip Chandra, Project Supervisor (Field)" loading="lazy"></div><b>Mangaldip Chandra</b><span>Project Supervisor (Field)</span></li><li class="member"><div class="img-frame"><img src="images/team/07-sanghamitra-chakraborty.jpg" alt="Sanghamitra Chakraborty, Operation Head (Office-In-Charge)" loading="lazy"></div><b>Sanghamitra Chakraborty</b><span>Operation Head (Office-In-Charge)</span></li><li class="member"><div class="img-frame"><img src="images/team/06-prachi-pandey.jpg" alt="Prachi Pandey, Customer Relationship Manager cum PA" loading="lazy"></div><b>Prachi Pandey</b><span>Customer Relationship Manager cum PA</span></li><li class="member"><div class="img-frame"><img src="images/team/08-krishnendu-mandal.jpg" alt="Krishnendu Mandal, Aquaculture Insurance Officer" loading="lazy"></div><b>Krishnendu Mandal</b><span>Aquaculture Insurance Officer</span></li></ul>
   </div>
 </section>
 
-<!-- ============ MISSION & VISION ============ -->
-<section class="section bg-surface" id="mission" aria-labelledby="mv-h">
+<!-- ============ VISION & MISSION ============ -->
+<section class="section vm-section" id="mission" aria-labelledby="mv-h">
+  <div class="vm-waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 60c180-40 360-40 540 0s360 40 540 0 270-30 360-10v70H0Z"/></svg>
+  </div>
   <div class="wrap">
-    <div class="sec-head sec-head-stack"><p class="label">Mission and vision</p><h2 id="mv-h">What we work towards</h2></div>
-    <div class="mv reveal">
-      <div>
-        <h3>Our mission</h3>
-        <ol>
-          <li>Provide reliable and practical aquaculture solutions</li>
-          <li>Support fish farmers with technical knowledge and quality products</li>
-          <li>Improve productivity, fish health and farm management</li>
-          <li>Make professional aquaculture support accessible to farmers</li>
-        </ol>
-      </div>
-      <div>
-        <h3>Our vision</h3>
-        <ol>
-          <li>Sustainable aquaculture and modern fish farming</li>
-          <li>Technology-driven solutions</li>
-          <li>Farmer empowerment, with better productivity and profitability</li>
-          <li>A trusted aquaculture service network</li>
-        </ol>
-      </div>
+    <div class="sec-head sec-head-stack"><p class="label">Our vision and our mission</p><h2 id="mv-h">What we work towards</h2></div>
+    <div class="vm-grid">
+      <article class="vm-card reveal">
+        <header><span class="vm-ic" aria-hidden="true"><svg><use href="#i-eye"/></svg></span><h3>Our Vision</h3></header>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-eye-sm"/></svg><span><b>Sustainable aquaculture</b> and modern fish farming</span></li>
+          <li><svg aria-hidden="true"><use href="#i-eye-sm"/></svg><span><b>Technology-driven</b> solutions</span></li>
+          <li><svg aria-hidden="true"><use href="#i-eye-sm"/></svg><span><b>Farmer empowerment</b>, with better <b>productivity and profitability</b></span></li>
+          <li><svg aria-hidden="true"><use href="#i-eye-sm"/></svg><span>A <b>trusted aquaculture service network</b></span></li>
+        </ul>
+      </article>
+      <article class="vm-card vm-mission reveal">
+        <header><span class="vm-ic" aria-hidden="true"><svg><use href="#i-target"/></svg></span><h3>Our Mission</h3></header>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-target-sm"/></svg><span>Provide <b>reliable and practical</b> aquaculture solutions</span></li>
+          <li><svg aria-hidden="true"><use href="#i-target-sm"/></svg><span>Support fish farmers with <b>technical knowledge</b> and <b>quality products</b></span></li>
+          <li><svg aria-hidden="true"><use href="#i-target-sm"/></svg><span>Improve <b>productivity, fish health</b> and <b>farm management</b></span></li>
+          <li><svg aria-hidden="true"><use href="#i-target-sm"/></svg><span>Make <b>professional aquaculture support</b> accessible to farmers</span></li>
+        </ul>
+      </article>
     </div>
   </div>
 </section>
@@ -333,9 +301,9 @@
       <p>Call us, or send photos of the fish and water on WhatsApp. For products, partnerships and project enquiries, use the enquiry form and our team will get back to you.</p>
     </div>
     <div class="cta-actions">
-      <a class="cta-line" href="tel:+919875402885"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 98754 02885</span><svg><use href="#i-arrow"/></svg></a>
-      <a class="cta-line" href="tel:+918334932266"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 83349 32266</span><svg><use href="#i-arrow"/></svg></a>
-      <a class="cta-line" href="https://wa.me/919875402885" data-wa><span class="cta-line-k">WhatsApp</span><span class="cta-line-v">Send photos of your pond</span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="https://wa.me/919875402885" target="_blank" rel="noopener"><span class="cta-line-k"><svg class="k-ic k-wa" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</span><span class="cta-line-v">+91 98754 02885<small>Send photos of your pond</small></span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="tel:+919875402885"><span class="cta-line-k"><svg class="k-ic" aria-hidden="true"><use href="#i-phone"/></svg>Call</span><span class="cta-line-v">+91 98754 02885</span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="tel:+918334932266"><span class="cta-line-k"><svg class="k-ic" aria-hidden="true"><use href="#i-phone"/></svg>Call</span><span class="cta-line-v">+91 83349 32266</span><svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn-accent" href="join.html#enquiry">Send an enquiry<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -349,10 +317,10 @@
           <p class="foot-slogan">Grow with fish, grow with Aqua Doctor Solutions.</p>
           <p>One shop, one stop solution for modern aquaculture services in Eastern India. Established 14th July 2019, Kolkata.</p>
           <ul class="socials" aria-label="Social media">
-            <li><a href="#" aria-label="Facebook: Aquadoctor Sol"><svg><use href="#i-fb"/></svg></a></li>
-            <li><a href="#" aria-label="YouTube: Aqua Doctor Solutions"><svg><use href="#i-yt"/></svg></a></li>
-            <li><a href="#" aria-label="Instagram: Aqua Doctor Solutions"><svg><use href="#i-ig"/></svg></a></li>
-            <li><a href="#" aria-label="LinkedIn: Aqua Doctor Solutions"><svg><use href="#i-in"/></svg></a></li>
+            <li><a href="https://www.facebook.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Facebook: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-fb"/></svg></a></li>
+            <li><a href="https://www.instagram.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Instagram: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-ig"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@AquaDoctorSolutions" target="_blank" rel="noopener" aria-label="YouTube: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-yt"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/aquadoctorsolutions/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-in"/></svg></a></li>
           </ul>
         </div>
       </div>
@@ -361,10 +329,10 @@
         <ul>
           <li><a href="about.html">About us</a></li>
           <li><a href="about.html#leadership">Leadership and team</a></li>
-          <li><a href="about.html#group">Wings of ADS</a></li>
           <li><a href="impact.html">Impact and projects</a></li>
           <li><a href="achievements.html">Achievements</a></li>
           <li><a href="media.html">Media</a></li>
+          <li><a href="media.html#brochure">Brochure</a></li>
           <li><a href="careers.html">Career opportunities</a></li>
         </ul>
       </nav>
@@ -384,9 +352,9 @@
         <h2>Contact</h2>
         <ul>
           <li><svg><use href="#i-pin"/></svg><span>Regus Horizon, Unit 1B - Horizon,<br>1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3,<br>Kolkata, West Bengal 700105</span></li>
-          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a></span></li>
+          <li class="fc-wa"><svg><use href="#i-wa"/></svg><span><a href="https://wa.me/919875402885" target="_blank" rel="noopener">+91 98754 02885</a><small>WhatsApp</small></span></li>
+          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a><small>Call</small></span></li>
           <li><svg><use href="#i-mail"/></svg><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></li>
-          <li><svg><use href="#i-globe"/></svg><a href="https://www.efishtutor.com" target="_blank" rel="noopener">www.efishtutor.com</a></li>
         </ul>
         <a class="btn btn-primary" href="join.html">Join with us<svg><use href="#i-arrow"/></svg></a>
       </div>
@@ -401,12 +369,15 @@
 </footer>
 
 <nav class="m-bar" aria-label="Quick contact">
-  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a class="m-bar-primary" href="join.html#enquiry"><svg><use href="#i-mail"/></svg><span>Enquire</span></a>
 </nav>
 
-<a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="Chat with Aqua Doctor Solutions on WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<div class="float-btns">
+  <a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="WhatsApp Aqua Doctor Solutions, +91 98754 02885"><svg><use href="#i-wa"/></svg></a>
+  <a class="call-float" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
+</div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
   <div class="lb-stage">

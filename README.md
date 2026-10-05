@@ -45,3 +45,20 @@ Each browser session counts once: the first page view sends a `POST` (adds one),
 
 ## Not built yet (after approval)
 Form submission (forms currently show a confirmation only), video embeds, Google Map, social media links, app store link.
+
+## Adding the client's photos and videos
+
+Copy each file into its folder, then run `python build.py`. Every folder has a `_PUT-FILES-HERE.txt` note with the exact names.
+
+| Client Drive folder | Put files in | Notes |
+|---|---|---|
+| Homepage_Slideshow | `images/hero/` | Shown in file-name order. Add alt text in `src/data/hero_alts.json`. Name the aerator video `hero-02a-aerator.mp4`. |
+| Our Team | `images/team/` | `01-debtanu-barman.jpg` … `08-krishnendu-mandal.jpg` (names in `src/data/team.json`) |
+| Our Journey | `images/about/` | `journey-1.mp4`, `journey-2.mp4`, `ceo-6-years.mp4` (optional `ceo-photo.jpg`) |
+| Our Service | `images/services/climate/`, `hitech/`, `insurance/`, `training/` | Any names. Insurance video: `images/services/insurance-video.mp4` |
+| Recognition | `images/recognition/` | Replace a photo by using the same file name |
+| Brochure | `images/media/` | `ads-brochure.pdf`, `ads-brochure-cover.jpg` |
+
+Large phone photos: run `python tools/optimize_images.py` (needs `pip install pillow`). Keep videos under about 15 MB (MP4, H.264).
+Matsya Sathi app link: set `MATSYA_APP_URL` at the top of `js/site.js`.
+Product uses and pack sizes: add `uses: [...]` and `pack: "..."` to a product in `js/products.js`.

@@ -1,6 +1,6 @@
 <!--
 title: Our services | Aqua Doctor Solutions
-description: Doctor-on-Call technical support, climate resilient and hi-tech aquaculture, expert consultancy, fisheries insurance, DPR preparation, aqua learning and training, and internship and job placement.
+description: Doctor-on-Call technical support, climate resilient and hi-tech aquaculture, expert consultancy, fisheries insurance, DPR preparation, aqua learning and training, and internships.
 nav: services
 -->
 <header class="page-hero">
@@ -24,7 +24,7 @@ nav: services
         <li><a href="#insurance"><span class="mono">05</span>Fisheries insurance</a></li>
         <li><a href="#dpr"><span class="mono">06</span>DPR preparation</a></li>
         <li><a href="#training"><span class="mono">07</span>Aqua learning and training</a></li>
-        <li><a href="#internship"><span class="mono">08</span>Internship and job placement</a></li>
+        <li><a href="#internship"><span class="mono">08</span>Internship</a></li>
       </ol>
       <a class="btn btn-primary btn-block" style="margin-top:28px" href="join.html?type=Service%20enquiry#enquiry">Ask about a service</a>
     </nav>
@@ -32,7 +32,7 @@ nav: services
     <div>
       <!-- 01 Doctor on call: featured dark block -->
       <article class="svc-doctor" id="doctor-on-call">
-        <div class="svc-block-head"><span class="ic"><svg><use href="#s-doctor"/></svg></span><span class="mono">01 · Our core service</span></div>
+        <div class="svc-block-head"><span class="ic"><svg><use href="#s-doctor"/></svg></span><span class="mono">01</span></div>
         <h2>Aquaculture technical support: Doctor-on-Call</h2>
         <p class="intro">Round-the-clock diagnostic and advisory support connecting farmers directly with our aquaculture experts. From rapid water testing and soil analysis to fish disease diagnosis, our “Doctor-on-Call” service brings a physical-and-digital (“phygital”) health management system straight to your pond, so problems are caught early and losses are prevented before they happen.</p>
         <div class="svc-grid">
@@ -63,7 +63,8 @@ nav: services
             <div class="tags" style="margin-top:18px"><span class="tag">Solar-powered aerators</span><span class="tag">Solar pumps</span><span class="tag">Biofloc-based systems</span></div>
             <p class="field-note"><b>In the field:</b> with support from IITG–TIDF, ADS introduced solar-powered aerators in Kajla village, enabling 25 farmers to adopt climate-resilient aquaculture practices.</p>
           </div>
-          <figure><div class="img-frame" style="aspect-ratio:1"><img src="images/f-solar.jpg" alt="A solar-powered paddlewheel aerator" loading="lazy"></div><figcaption class="img-caption">Solar-powered paddlewheel aerator.</figcaption></figure>
+          <!-- Slideshow: every photo in images/services/climate/ (solar aerators, Biofloc tanks). Until the folder has photos, these existing ones are shown. -->
+          {{slideshow:images/services/climate|images/f-solar.jpg::A solar-powered paddlewheel aerator;images/hero/hero-03-biofloc-women.jpg::Women farmers beside Biofloc tanks;images/v-boat.jpg::A solar-powered boat aerator on a village pond;images/hero-aer.jpg::A paddlewheel aerator running in a pond|Solar aerators and Biofloc tanks}}
         </div>
       </article>
 
@@ -81,9 +82,9 @@ nav: services
           <div><span class="mono">NH₃</span><b>Ammonia</b></div>
           <div><span class="mono">Level</span><b>Water level</b></div>
         </div>
-        <div class="svc-grid">
-          <figure><div class="img-frame"><img src="images/p-drone.jpg" alt="A drone flying over a fish pond" loading="lazy"></div><figcaption class="img-caption">Drone application in aquaculture pond monitoring.</figcaption></figure>
-          <figure><div class="img-frame" style="background:#fff;border:1px solid var(--line)"><img src="images/s-app.jpg" alt="The Matsya Sathi app presented on a large screen" loading="lazy"></div><figcaption class="img-caption">The Matsya Sathi app, India's first integrated aquaculture companion app.</figcaption></figure>
+        <!-- Slideshow: every photo in images/services/hitech/ (IoT sensors, hi-tech aquaculture). Until the folder has photos, these existing ones are shown. -->
+        <div class="svc-gal-wide">
+          {{slideshow:images/services/hitech|images/p-drone.jpg::A drone flying over a fish pond;images/f-drone.jpg::Drone monitoring over a pond;images/s-app.jpg::The Matsya Sathi app presented on a large screen|IoT and hi-tech aquaculture}}
         </div>
       </article>
 
@@ -110,12 +111,16 @@ nav: services
         <div class="svc-block-head"><span class="ic"><svg><use href="#s-shield"/></svg></span><span class="mono">05</span></div>
         <h2>Aquaculture and fisheries insurance</h2>
         <div class="svc-grid">
-          <figure><div class="img-frame"><img src="images/f-insure.jpg" alt="Farmers and ADS staff outside a cooperative office" loading="lazy"></div></figure>
+          <!-- Slideshow: every photo in images/services/insurance/ (farmer with the insurance officer, pond-side insurance work) -->
+          {{slideshow:images/services/insurance|images/f-insure.jpg::Farmers and ADS staff outside a cooperative office|Fisheries insurance in the field}}
           <div>
             <p class="intro">We help farmers secure their livelihoods against disease outbreaks, natural calamities and production losses by facilitating access to government-backed and formal fisheries insurance schemes, including linkages with National Insurance and NFDB registration.</p>
             <p>This gives farming families genuine financial protection alongside technical support.</p>
             <div class="case-fig" style="margin-top:24px;padding-top:18px;border-top:1px solid var(--line)"><span class="num">25</span><span>farmers received insurance coverage from National Insurance with ADS support</span></div>
           </div>
+        </div>
+        <div class="svc-video">
+          {{video:images/services/insurance-video|images/f-insure.jpg|Fisheries insurance: how ADS helps farmers}}
         </div>
       </article>
 
@@ -143,19 +148,25 @@ nav: services
             <div class="case-fig" style="margin-top:24px;padding-top:18px;border-top:1px solid var(--line)"><span class="num">100+</span><span>online and offline training sessions last year</span></div>
             <p class="field-note" style="margin-top:0"><b>Aqua One Center Kolkata</b>, part of the ADS group, is an NFDB and MANAGE approved fisheries institute.</p>
           </div>
-          <figure><div class="img-frame" style="aspect-ratio:4/3"><img src="images/f-class.jpg" alt="A classroom training session led by Dr. Barman" loading="lazy"></div><figcaption class="img-caption">An Aqua Learning session at an institute, Kolkata.</figcaption></figure>
+          <!-- Slideshow: every photo in images/services/training/. Until the folder has photos, these existing ones are shown. -->
+          {{slideshow:images/services/training|images/f-class.jpg::A classroom training session led by Dr. Barman;images/hero/hero-04-pondside-training.jpg::Pond-side training session with women farmers;images/tr-room.jpg::Women farmers at a training meeting;images/f-enterprise.jpg::Hands-on training with women farmers;images/g-meet.jpg::A trainer addressing a community meeting;images/hero/hero-05-farmer-training.jpg::Farmers and trainers at a training programme;images/g-webinar.jpg::Poster for a national webinar on careers in fisheries|Aqua learning and training sessions}}
         </div>
       </article>
 
       <!-- 08 internship -->
       <article class="svc-block reveal" id="internship">
         <div class="svc-block-head"><span class="ic"><svg><use href="#s-intern"/></svg></span><span class="mono">08</span></div>
-        <h2>Internship and job placement</h2>
+        <h2>Internship</h2>
         <div class="svc-grid">
           <figure><div class="img-frame"><img src="images/g-group.jpg" alt="Students and young professionals at a field programme" loading="lazy"></div></figure>
           <div>
-            <p class="intro">We provide internship and job placement support to help students, freshers and fisheries professionals build practical experience and connect with suitable career opportunities in the aquaculture and fisheries sector.</p>
-            <div class="btn-row" style="margin-top:24px"><a class="btn btn-primary" href="careers.html">Career opportunities<svg><use href="#i-arrow"/></svg></a><a class="btn btn-outline" href="careers.html#apply">Submit your CV</a></div>
+            <!-- Points taken from the existing internship text; the client can add more lines here -->
+            <ul class="checks checks-light intern-list" style="margin-top:0">
+              <li><svg><use href="#i-check"/></svg>For <b>students, freshers</b> and <b>fisheries professionals</b></li>
+              <li><svg><use href="#i-check"/></svg>Build <b>practical experience</b> in aquaculture and fisheries</li>
+              <li><svg><use href="#i-check"/></svg>Connect with <b>career opportunities</b> in the sector</li>
+            </ul>
+            <div class="btn-row" style="margin-top:24px"><a class="btn btn-primary" href="careers.html#apply">Apply for an internship<svg><use href="#i-arrow"/></svg></a></div>
           </div>
         </div>
       </article>

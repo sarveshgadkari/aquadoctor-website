@@ -1,0 +1,10 @@
+{
+  "_note": "Alt text for the home page slideshow. The slideshow shows every photo/video in images/hero/ in file-name order. Add a line here for each new file. For a video, 'name.mp4:poster' sets the still image shown before it plays.",
+  "hero-01-matsya-launch.jpg": "Matsya Sathi app launch event, with women farmers holding the Matsya Sathi sign",
+  "hero-02-startup-expo.jpg": "The Aqua Doctor Solutions team at a startup expo stall",
+  "hero-03-biofloc-women.jpg": "Women farmers standing beside Biofloc tanks",
+  "hero-04-pondside-training.jpg": "Pond-side training session with women farmers",
+  "hero-05-farmer-training.jpg": "Farmers and trainers at a farmer training programme beside a pond",
+  "hero-02a-aerator.mp4": "Paddlewheel aerator running in a fish pond",
+  "hero-02a-aerator.mp4:poster": "images/hero-aer.jpg"
+}

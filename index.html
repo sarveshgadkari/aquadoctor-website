@@ -60,6 +60,13 @@
 <symbol id="c-elearn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h20v14H6z"/><path d="M3 25h26l-1.5 2.5h-23z"/><path d="m16 11-6.5 2.7L16 16.4l6.5-2.7z"/><path d="M12 14.8v2.6c2.2 1.5 5.8 1.5 8 0v-2.6M22.5 13.7v3.5"/></symbol>
 <symbol id="c-insure" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M16 3 5 7v8c0 7 5 12 11 14 6-2 11-7 11-14V7z"/><path d="M9.5 16c2.6-3.4 7.4-3.9 10.5 0-3.1 3.9-7.9 3.4-10.5 0zM20 16l3-2.4v4.8z"/><circle cx="13" cy="15.3" r=".6" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 5C6 6.4 3.5 9.6 3.5 13.6V19h6.5v-6.5H6.6c.2-2.6 1.8-4.6 4.2-5.6zM20.1 5c-3.6 1.4-6.1 4.6-6.1 8.6V19h6.5v-6.5h-3.4c.2-2.6 1.8-4.6 4.2-5.6z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+<symbol id="i-eye-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.3-6 9-6 9 6 9 6-3.3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+<symbol id="i-target-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></symbol>
 </defs>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
@@ -70,11 +77,6 @@
       <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
         <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
       </a>
-      <span class="brand-divider" aria-hidden="true"></span>
-      <!-- Matsya Sathi app link: site.js points this at MATSYA_APP_URL once the client supplies it -->
-      <a class="brand-app" href="index.html#matsya-sathi" data-matsya-app data-tip="Download Matsya Sathi App" aria-label="Download Matsya Sathi App">
-        <img src="images/matsya.webp" alt="Matsya Sathi logo" width="440" height="440">
-      </a>
     </div>
 
     <nav class="nav" id="site-nav" aria-label="Main">
@@ -84,15 +86,7 @@
       </div>
       <ul class="nav-list">
         <li><a href="index.html" data-nav="home" aria-current="page">Home</a></li>
-        <li class="has-sub">
-          <a href="about.html" data-nav="about">About us<svg class="caret" aria-hidden="true"><use href="#i-down"/></svg></a>
-          <ul class="sub">
-            <li><a href="about.html#company"><b>Company overview</b><span>Who we are, where we work</span></a></li>
-            <li><a href="about.html#leadership"><b>Leadership and team</b><span>Dr. Debtanu Barman and the ADS team</span></a></li>
-            <li><a href="about.html#journey"><b>Our journey</b><span>From 2019 to today</span></a></li>
-            <li><a href="impact.html" data-nav="impact"><b>Impact and projects</b><span>Interventions, Adopt the Village</span></a></li>
-          </ul>
-        </li>
+        <li><a href="about.html" data-nav="about">About us</a></li>
         <li><a href="services.html" data-nav="services">Our services</a></li>
         <li><a href="products.html" data-nav="products">Our products</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
@@ -102,16 +96,19 @@
       <div class="nav-bottom">
         <a class="btn btn-primary btn-block" href="join.html#enquiry">Contact us<svg><use href="#i-arrow"/></svg></a>
         <dl class="nav-contact">
-          <div><dt>Doctor-on-Call</dt><dd><a href="tel:+919875402885">+91 98754 02885</a></dd></div>
+          <div><dt>WhatsApp</dt><dd><a class="num-ic" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg class="ic-wa" aria-hidden="true"><use href="#i-wa"/></svg>+91 98754 02885</a></dd></div>
+          <div><dt>Call (Doctor-on-Call)</dt><dd><a class="num-ic" href="tel:+919875402885"><svg aria-hidden="true"><use href="#i-phone"/></svg>+91 98754 02885</a></dd></div>
           <div><dt>Email</dt><dd><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></dd></div>
         </dl>
       </div>
     </nav>
 
     <div class="header-actions">
-      <a class="header-call" href="tel:+919875402885"><span>Doctor-on-Call</span>+91 98754 02885</a>
+      <div class="header-nums">
+        <a class="hn hn-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener" aria-label="WhatsApp +91 98754 02885"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>+91 98754 02885</span></a>
+        <a class="hn hn-call" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>+91 98754 02885</span></a>
+      </div>
       <a class="btn btn-primary header-cta" href="join.html#enquiry">Contact us</a>
-      <a class="icon-btn header-phone" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
       <button class="icon-btn menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-open><svg><use href="#i-menu"/></svg><span class="sr">Open menu</span></button>
     </div>
   </div>
@@ -141,38 +138,26 @@
 
     <div class="hero-media" aria-roledescription="carousel" aria-label="Aqua Doctor Solutions at work">
       <div class="hero-card">
-        <div class="hero-slide is-on" role="group" aria-roledescription="slide" aria-label="1 of 6">
-          <img src="images/hero/hero-01-matsya-launch.jpg" alt="Matsya Sathi app launch event, with women farmers holding the Matsya Sathi sign" width="1100" height="619">
-        </div>
-        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 6">
-          <img src="images/hero/hero-02-startup-expo.jpg" alt="The Aqua Doctor Solutions team at a startup expo stall" width="1100" height="825" loading="lazy">
-        </div>
-        <!-- Aerator video slide: the file path is HERO_VIDEO_SRC in js/site.js. Until the file exists, the poster shows like a normal slide. -->
-        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 6" data-video>
-          <video muted playsinline preload="none" poster="images/hero-aer.jpg" width="800" height="492" aria-label="Paddlewheel aerator running in a fish pond"></video>
-        </div>
-        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 6">
-          <img src="images/hero/hero-03-biofloc-women.jpg" alt="Women farmers standing beside Biofloc tanks" width="1100" height="826" loading="lazy">
-        </div>
-        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="5 of 6">
-          <img src="images/hero/hero-04-pondside-training.jpg" alt="Pond-side training session with women farmers" width="1100" height="825" loading="lazy">
-        </div>
-        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="6 of 6">
-          <img src="images/hero/hero-05-farmer-training.jpg" alt="Farmers and trainers at a farmer training programme beside a pond" width="1100" height="825" loading="lazy">
-        </div>
+        <!-- Slides are generated by build.py from every photo/video in images/hero/ (file-name order). Alt text: src/data/hero_alts.json -->
+        <div class="hero-slide is-on" role="group" aria-roledescription="slide" aria-label="1 of 6"><img src="images/hero/hero-01-matsya-launch.jpg" alt="Matsya Sathi app launch event, with women farmers holding the Matsya Sathi sign"></div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 6"><img src="images/hero/hero-02-startup-expo.jpg" alt="The Aqua Doctor Solutions team at a startup expo stall" loading="lazy"></div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 6" data-video><video muted playsinline preload="none" poster="images/hero-aer.jpg" data-src="images/hero/hero-02a-aerator.mp4" aria-label="Paddlewheel aerator running in a fish pond"></video></div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 6"><img src="images/hero/hero-03-biofloc-women.jpg" alt="Women farmers standing beside Biofloc tanks" loading="lazy"></div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="5 of 6"><img src="images/hero/hero-04-pondside-training.jpg" alt="Pond-side training session with women farmers" loading="lazy"></div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="6 of 6"><img src="images/hero/hero-05-farmer-training.jpg" alt="Farmers and trainers at a farmer training programme beside a pond" loading="lazy"></div>
       </div>
       <div class="hero-controls">
         <button class="icon-btn icon-btn-light" type="button" data-hero-prev aria-label="Previous slide"><svg><use href="#i-left"/></svg></button>
         <div class="hero-progress" role="group" aria-label="Choose slide">
-          <button type="button" aria-label="Slide 1"></button><button type="button" aria-label="Slide 2"></button><button type="button" aria-label="Slide 3, aerator video"></button><button type="button" aria-label="Slide 4"></button><button type="button" aria-label="Slide 5"></button><button type="button" aria-label="Slide 6"></button>
+          <button type="button" aria-label="Slide 1"></button><button type="button" aria-label="Slide 2"></button><button type="button" aria-label="Slide 3, video"></button><button type="button" aria-label="Slide 4"></button><button type="button" aria-label="Slide 5"></button><button type="button" aria-label="Slide 6"></button>
         </div>
         <button class="icon-btn icon-btn-light" type="button" data-hero-next aria-label="Next slide"><svg><use href="#i-right"/></svg></button>
       </div>
     </div>
 
     <div class="btn-row hero-ctas">
-      <a class="btn btn-white" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call</a>
       <a class="btn btn-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+      <a class="btn btn-white" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call</a>
       <a class="btn btn-light" href="join.html#enquiry"><svg><use href="#i-mail"/></svg>Enquire</a>
     </div>
   </div>
@@ -206,136 +191,23 @@
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
-<section class="section" aria-labelledby="about-h">
-  <div class="wrap split split-6-5 split-center">
-    <div class="reveal">
-      <p class="label">About ADS</p>
-      <h2 id="about-h" style="margin-bottom:24px">End-to-end aquaculture support, from quality inputs to market linkage</h2>
-      <div class="prose">
-        <p>We collaborate with fish farmers, hatcheries and aquaculture input partners to promote sustainable practices, healthy fish production and improved farmer livelihoods.</p>
-        <p>Founded by Dr. Debtanu Barman, widely known as the “Aqua Doctor”, ADS brings together a team of young professionals who blend modern technology with professional ethics, giving farmers and entrepreneurs scientifically proven, high-yield fish farming techniques.</p>
-      </div>
-      <dl class="deflist">
-        <div><dt>Established</dt><dd>14th July 2019, Kolkata, West Bengal</dd></div>
-        <div><dt>Where we work</dt><dd>East and North-Eastern states of India, with footprints in Bangladesh, Bhutan and Nepal</dd></div>
-        <div><dt>Who we serve</dt><dd>Fish farmers, hatcheries, FFPOs, SHGs, aquapreneurs, fisheries institutes and KVKs</dd></div>
-      </dl>
-      <p style="margin-top:28px"><a class="link" href="about.html">More about us<svg><use href="#i-arrow"/></svg></a></p>
-    </div>
-    <figure class="reveal">
-      <div class="footprint">
-        <img class="map" src="images/map.webp" alt="Map of India highlighting the East and North-Eastern states where Aqua Doctor Solutions works" loading="lazy" width="420" height="479">
-        <ul class="countries" aria-label="Neighbouring countries">
-          <li><img src="images/flag-bd.webp" alt="" loading="lazy">Bangladesh</li>
-          <li><img src="images/flag-bt.webp" alt="" loading="lazy">Bhutan</li>
-          <li><img src="images/flag-np.webp" alt="" loading="lazy">Nepal</li>
-        </ul>
-      </div>
-      <figcaption class="img-caption">Our footprints: states where we work in East and North-East India, and three neighbouring countries.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ================= SERVICE JOURNEY ================= -->
-<section class="section bg-surface" aria-labelledby="journey-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="label">Service journey</p><h2 id="journey-h">From our warehouse to your pond</h2></div>
-      <p>How we support a customer, from preparing the products to the service provided at the fish pond or farm.</p>
-    </div>
-    <div class="journey reveal">
-      <div class="video">
-        <img src="images/v-net.jpg" alt="" loading="lazy">
-        <button class="play" type="button" aria-label="Play the service journey film (to be supplied)"><svg><use href="#i-play"/></svg></button>
-        <div class="video-meta"><span>Service journey film</span><span class="mono">Video to be supplied</span></div>
-      </div>
-      <div>
-        <span class="flag">Client content required</span>
-        <h3 style="margin:16px 0 10px">What the film will show</h3>
-        <p class="muted">Product and material preparation, transportation, the warehouse, delivery, reaching the fish pond or farm, and the service provided to the customer.</p>
-        <a class="link" href="media.html#videos">Video gallery<svg><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-    <ol class="steps reveal">
-      <li><span class="step-ic"><svg><use href="#s-flask"/></svg></span><div><span class="mono">01</span><h4>Preparation</h4><p>Products and materials prepared</p></div></li>
-      <li><span class="step-ic"><svg><use href="#s-store"/></svg></span><div><span class="mono">02</span><h4>Warehouse</h4><p>Stored until dispatch</p></div></li>
-      <li><span class="step-ic"><svg><use href="#s-truck"/></svg></span><div><span class="mono">03</span><h4>Transport</h4><p>Carried to the farmer's area</p></div></li>
-      <li><span class="step-ic"><svg><use href="#s-box"/></svg></span><div><span class="mono">04</span><h4>Delivery</h4><p>Handed over to the customer</p></div></li>
-      <li><span class="step-ic"><svg><use href="#s-pond"/></svg></span><div><span class="mono">05</span><h4>At the pond</h4><p>Our team reaches the farm</p></div></li>
-      <li><span class="step-ic"><svg><use href="#s-doctor"/></svg></span><div><span class="mono">06</span><h4>Service</h4><p>Support provided to the customer</p></div></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ================= CEO ================= -->
-<section class="section" aria-labelledby="ceo-h">
-  <div class="wrap ceo-home">
-    <figure class="ceo-photo reveal">
-      <div class="img-frame"><img src="images/ceo-portrait.jpg" alt="Dr. Debtanu Barman speaking at a conference" loading="lazy"></div>
-      <figcaption class="badge">Founder and CEO</figcaption>
-    </figure>
-    <div class="reveal">
-      <p class="label" id="ceo-h">From our CEO's desk</p>
-      <blockquote class="quote">Fish farming goes beyond production. It is about nurturing aspirations, securing livelihoods, and building a stronger future for our communities.</blockquote>
-      <p class="prose" style="max-width:60ch">Every pond managed, every seed nurtured, and every scientific practice adopted has the potential to transform lives. By embracing sustainability, innovation and perseverance, aquapreneurs can grow not only fish but also family prosperity, and contribute meaningfully to a resilient Blue Economy.</p>
-      <div class="sign">
-        <div><b>Dr. Debtanu Barman</b><span>Founder and CEO, widely known as the “Aqua Doctor”</span></div>
-        <a class="link" href="about.html#leadership">About our founder<svg><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= IMPACT ================= -->
-<section class="section bg-surface" aria-labelledby="impact-h">
-  <div class="wrap">
-    <div class="split split-center">
-      <div class="mosaic reveal">
-        <div class="img-frame"><img src="images/hero-village.jpg" alt="Community gathering at a village pond, East Midnapore" loading="lazy"></div>
-        <div class="img-frame"><img src="images/v-boat.jpg" alt="A solar-powered boat aerator on a village pond" loading="lazy"></div>
-        <div class="img-frame"><img src="images/v-fish.jpg" alt="Fingerlings held in a farmer's hands" loading="lazy"></div>
-      </div>
-      <div class="reveal">
-        <p class="label">Impact · Community engagement</p>
-        <h2 id="impact-h" style="margin-bottom:20px">Adopt the Village, East Midnapore</h2>
-        <p>With Kajla Janakalyan Samity (KJKS) and Upakulia Primary Matsyajeebi Samabay Samity Ltd. (UPMSS), an initiative to raise incomes, create jobs and build a climate-resilient aquaculture value chain with eco-friendly technology.</p>
-        <div class="stat-row">
-          <div><span class="num">750+</span><span>Cooperative members</span></div>
-          <div><span class="num">52%</span><span>Of members are women</span></div>
-          <div><span class="num">5</span><span>Gram Panchayats</span></div>
-        </div>
-        <a class="link" href="impact.html">Our impact and projects<svg><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-    <div class="results reveal">
-      <div class="result"><span class="mono">Climate resilient aquaculture</span><span class="num">25</span><h4>Farmers adopted solar aerators</h4><p>In Kajla village, with support from IITG–TIDF: oxygen without electricity or fuel.</p></div>
-      <div class="result"><span class="mono">Aquatic livelihood</span><span class="num">120</span><h4>Coastal families in West Bengal</h4><p>Improved productivity, reduced risks and more stable incomes through training and field support.</p></div>
-      <div class="result"><span class="mono">Access to finance</span><span class="num">25</span><h4>Farmers received aqua insurance</h4><p>Cover from National Insurance, facilitated by ADS, against disease, calamities and production losses.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= MATSYA SATHI ================= -->
-<section class="section bg-brand" id="matsya-sathi" aria-labelledby="app-h">
-  <div class="wrap app">
-    <div class="app-logo reveal"><img src="images/matsya.webp" alt="Matsya Sathi logo, powered by ADS" loading="lazy" width="440" height="440"></div>
-    <div class="reveal">
+<!-- ================= MATSYA SATHI (compact; the pulsing logo is the download link) ================= -->
+<section class="section-sm bg-brand app-compact" id="matsya-sathi" aria-labelledby="app-h">
+  <div class="wrap app2">
+    <!-- The logo is the download link: site.js points it at MATSYA_APP_URL (set this when the client sends the link) -->
+    <a class="app2-logo" href="#matsya-sathi" data-matsya-app aria-label="Download the Matsya Sathi app">
+      <img src="images/matsya.webp" alt="Matsya Sathi logo, powered by ADS" loading="lazy" width="440" height="440">
+      <span class="app2-tap" aria-hidden="true">Tap to download</span>
+    </a>
+    <div class="app2-copy reveal">
       <p class="label">New launch</p>
-      <h2 id="app-h" style="margin-bottom:10px">Matsya Sathi app</h2>
+      <h2 id="app-h">Matsya Sathi app</h2>
       <span class="app-sub">India's first integrated aquaculture companion app</span>
-      <p style="max-width:60ch">Our digital platform for fisheries brings aquaculture e-learning together with an e-commerce module for high-quality inputs, doctor consultation and market linkages.</p>
-      <div class="app-feats">
-        <div><b>E-learning</b><span>Scientific fish farming, on the phone</span></div>
-        <div><b>E-commerce</b><span>High-quality aquaculture inputs</span></div>
-        <div><b>Consultation</b><span>Doctor consultation for your pond</span></div>
-        <div><b>Market linkage</b><span>Connecting farmers with markets</span></div>
-      </div>
-      <div class="btn-row">
-        <!-- Uses MATSYA_APP_URL in js/site.js, the same as the header logo link -->
-        <a class="store-btn" href="#matsya-sathi" data-matsya-app aria-label="Download the Matsya Sathi app"><svg><use href="#i-arrow"/></svg><span><small>Download</small><b>Matsya Sathi</b></span></a>
-        <span class="flag" data-matsya-pending style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#F5C77E">App download link to be supplied</span>
-      </div>
+      <p>Our digital platform for fisheries brings aquaculture e-learning together with an e-commerce module for high-quality inputs, doctor consultation and market linkages.</p>
+      <ul class="app2-feats">
+        <li>E-learning</li><li>E-commerce</li><li>Doctor consultation</li><li>Market linkage</li>
+      </ul>
+      <span class="flag" data-matsya-pending style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#F5C77E">App download link to be supplied</span>
     </div>
   </div>
 </section>
@@ -479,9 +351,9 @@
       <p>Call us, or send photos of the fish and water on WhatsApp. For products, partnerships and project enquiries, use the enquiry form and our team will get back to you.</p>
     </div>
     <div class="cta-actions">
-      <a class="cta-line" href="tel:+919875402885"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 98754 02885</span><svg><use href="#i-arrow"/></svg></a>
-      <a class="cta-line" href="tel:+918334932266"><span class="cta-line-k">Call</span><span class="cta-line-v">+91 83349 32266</span><svg><use href="#i-arrow"/></svg></a>
-      <a class="cta-line" href="https://wa.me/919875402885" data-wa><span class="cta-line-k">WhatsApp</span><span class="cta-line-v">Send photos of your pond</span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="https://wa.me/919875402885" target="_blank" rel="noopener"><span class="cta-line-k"><svg class="k-ic k-wa" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</span><span class="cta-line-v">+91 98754 02885<small>Send photos of your pond</small></span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="tel:+919875402885"><span class="cta-line-k"><svg class="k-ic" aria-hidden="true"><use href="#i-phone"/></svg>Call</span><span class="cta-line-v">+91 98754 02885</span><svg><use href="#i-arrow"/></svg></a>
+      <a class="cta-line" href="tel:+918334932266"><span class="cta-line-k"><svg class="k-ic" aria-hidden="true"><use href="#i-phone"/></svg>Call</span><span class="cta-line-v">+91 83349 32266</span><svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn-accent" href="join.html#enquiry">Send an enquiry<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -495,10 +367,10 @@
           <p class="foot-slogan">Grow with fish, grow with Aqua Doctor Solutions.</p>
           <p>One shop, one stop solution for modern aquaculture services in Eastern India. Established 14th July 2019, Kolkata.</p>
           <ul class="socials" aria-label="Social media">
-            <li><a href="#" aria-label="Facebook: Aquadoctor Sol"><svg><use href="#i-fb"/></svg></a></li>
-            <li><a href="#" aria-label="YouTube: Aqua Doctor Solutions"><svg><use href="#i-yt"/></svg></a></li>
-            <li><a href="#" aria-label="Instagram: Aqua Doctor Solutions"><svg><use href="#i-ig"/></svg></a></li>
-            <li><a href="#" aria-label="LinkedIn: Aqua Doctor Solutions"><svg><use href="#i-in"/></svg></a></li>
+            <li><a href="https://www.facebook.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Facebook: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-fb"/></svg></a></li>
+            <li><a href="https://www.instagram.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Instagram: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-ig"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@AquaDoctorSolutions" target="_blank" rel="noopener" aria-label="YouTube: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-yt"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/aquadoctorsolutions/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-in"/></svg></a></li>
           </ul>
         </div>
       </div>
@@ -507,10 +379,10 @@
         <ul>
           <li><a href="about.html">About us</a></li>
           <li><a href="about.html#leadership">Leadership and team</a></li>
-          <li><a href="about.html#group">Wings of ADS</a></li>
           <li><a href="impact.html">Impact and projects</a></li>
           <li><a href="achievements.html">Achievements</a></li>
           <li><a href="media.html">Media</a></li>
+          <li><a href="media.html#brochure">Brochure</a></li>
           <li><a href="careers.html">Career opportunities</a></li>
         </ul>
       </nav>
@@ -530,9 +402,9 @@
         <h2>Contact</h2>
         <ul>
           <li><svg><use href="#i-pin"/></svg><span>Regus Horizon, Unit 1B - Horizon,<br>1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3,<br>Kolkata, West Bengal 700105</span></li>
-          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a></span></li>
+          <li class="fc-wa"><svg><use href="#i-wa"/></svg><span><a href="https://wa.me/919875402885" target="_blank" rel="noopener">+91 98754 02885</a><small>WhatsApp</small></span></li>
+          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a><small>Call</small></span></li>
           <li><svg><use href="#i-mail"/></svg><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></li>
-          <li><svg><use href="#i-globe"/></svg><a href="https://www.efishtutor.com" target="_blank" rel="noopener">www.efishtutor.com</a></li>
         </ul>
         <a class="btn btn-primary" href="join.html">Join with us<svg><use href="#i-arrow"/></svg></a>
       </div>
@@ -547,12 +419,15 @@
 </footer>
 
 <nav class="m-bar" aria-label="Quick contact">
-  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a class="m-bar-primary" href="join.html#enquiry"><svg><use href="#i-mail"/></svg><span>Enquire</span></a>
 </nav>
 
-<a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="Chat with Aqua Doctor Solutions on WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<div class="float-btns">
+  <a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="WhatsApp Aqua Doctor Solutions, +91 98754 02885"><svg><use href="#i-wa"/></svg></a>
+  <a class="call-float" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
+</div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
   <div class="lb-stage">

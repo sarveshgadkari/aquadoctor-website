@@ -3,7 +3,6 @@
   "use strict";
   var WA_NUMBER = "919875402885"; // confirm the WhatsApp number with ADS
   var MATSYA_APP_URL = "";          // CLIENT TO SUPPLY: APK file path, Play Store or App Store link
-  var HERO_VIDEO_SRC = "images/hero/aerator.mp4"; // CLIENT TO SUPPLY: aerator video file
   var VISITOR_API = "/api/visits";  // visitor counter endpoint (Vercel function api/visits.js)
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -76,87 +75,149 @@
     });
   }
 
-  /* ---------- home hero: full-width slideshow (5 photos + aerator video) ---------- */
+  /* ---------- home hero slideshow: photos + any number of videos (slides built from images/hero/ by build.py) ---------- */
   var hero = $("[data-hero]");
   if (hero) {
     var slides = $$(".hero-slide", hero), bars = $$(".hero-progress button", hero);
     var idx = 0, tm = null, MS = 6000, remaining = MS, startedAt = 0, paused = false;
-    var vSlide = $("[data-video]", hero), video = vSlide ? $("video", vSlide) : null;
-    var videoOk = !!(video && HERO_VIDEO_SRC), vPlaying = false;
     if (reduce) hero.classList.add("is-static");
-    // watchdog: if the video has not started within one slide's time (missing file, slow or blocked load),
-    // treat it as a photo slide and move on, so the slideshow never gets stuck
-    function armWatchdog(ms) {
-      clearTimeout(tm); remaining = ms; startedAt = Date.now();
-      if (!paused) tm = setTimeout(function () { if (!vPlaying) { videoOk = false; go(idx + 1); } }, ms);
-    }
-    function videoActive() { return videoOk && !reduce && slides[idx] === vSlide; }
-    function schedule(ms) {
-      clearTimeout(tm); remaining = ms; startedAt = Date.now();
-      if (!paused && !reduce) tm = setTimeout(function () { go(idx + 1); }, ms);
-    }
+    function vidOf(i) { var sl = slides[i]; return sl && sl.hasAttribute("data-video") ? $("video", sl) : null; }
+    function curVid() { var v = vidOf(idx); return v && !v.dataset.failed && !reduce ? v : null; }
     function restartBar(ms) {
       var b = bars[idx]; if (!b) return;
       hero.style.setProperty("--slide-ms", ms + "ms");
       b.classList.remove("is-on"); void b.offsetWidth; b.classList.add("is-on");
     }
-    function videoFailed() { videoOk = false; if (slides[idx] === vSlide) { restartBar(MS); schedule(MS); } }
-    if (video) {
-      // a missing or broken file simply leaves the poster image showing, like a photo slide
-      video.addEventListener("error", videoFailed);
-      video.addEventListener("ended", function () { if (slides[idx] === vSlide) go(idx + 1); });
-      video.addEventListener("playing", function () { vPlaying = true; if (slides[idx] === vSlide) clearTimeout(tm); });
-      video.addEventListener("loadedmetadata", function () { if (videoActive() && isFinite(video.duration)) restartBar(video.duration * 1000); });
+    function schedule(ms) {
+      clearTimeout(tm); remaining = ms; startedAt = Date.now();
+      if (!paused && !reduce) tm = setTimeout(function () { go(idx + 1); }, ms);
     }
+    function failed(v) { v.dataset.failed = "1"; if (vidOf(idx) === v) { restartBar(MS); schedule(MS); } }
+    slides.forEach(function (sl, i) {
+      var v = vidOf(i); if (!v) return;
+      v.addEventListener("error", function () { failed(v); }, true);
+      v.addEventListener("ended", function () { if (vidOf(idx) === v) go(idx + 1); });
+      v.addEventListener("playing", function () { v.dataset.playing = "1"; if (vidOf(idx) === v) clearTimeout(tm); });
+      v.addEventListener("loadedmetadata", function () { if (vidOf(idx) === v && isFinite(v.duration)) restartBar(v.duration * 1000); });
+    });
     function go(n) {
-      if (video && slides[idx] === vSlide) video.pause();
+      var old = vidOf(idx); if (old) old.pause();
       idx = (n + slides.length) % slides.length;
       slides.forEach(function (s, i) { s.classList.toggle("is-on", i === idx); s.setAttribute("aria-hidden", i === idx ? "false" : "true"); });
-      bars.forEach(function (b, i) {
-        b.classList.remove("is-on"); b.classList.toggle("is-done", i < idx);
-        b.setAttribute("aria-current", i === idx ? "true" : "false");
-      });
-      restartBar(MS);
-      clearTimeout(tm);
+      bars.forEach(function (b, i) { b.classList.remove("is-on"); b.classList.toggle("is-done", i < idx); b.setAttribute("aria-current", i === idx ? "true" : "false"); });
+      restartBar(MS); clearTimeout(tm);
       if (reduce) return; // no autoplay and no video playback with reduced motion
-      if (videoActive()) {
-        vPlaying = false;
-        if (!video.getAttribute("src")) video.src = HERO_VIDEO_SRC; // loads only when its slide is shown
-        try { video.currentTime = 0; } catch (err) {}
-        if (!paused) { var p = video.play(); if (p && p.catch) p.catch(videoFailed); }
-        armWatchdog(MS);
-      } else {
-        schedule(MS);
-      }
+      var v = curVid();
+      if (v) {
+        if (!v.getAttribute("src")) v.src = v.dataset.src; // a video loads only when its slide is shown
+        try { v.currentTime = 0; } catch (err) {}
+        v.dataset.playing = "";
+        if (!paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () { failed(v); }); }
+        // watchdog: if the video has not started in one slide's time, move on so the slideshow never gets stuck
+        clearTimeout(tm); remaining = MS; startedAt = Date.now();
+        if (!paused) tm = setTimeout(function () { if (!v.dataset.playing) { failed(v); } }, MS);
+      } else schedule(MS);
     }
     function pause() {
       if (paused) return;
       paused = true; hero.classList.add("is-paused");
       clearTimeout(tm); remaining = Math.max(remaining - (Date.now() - startedAt), 0);
-      if (videoActive()) video.pause();
+      var v = curVid(); if (v) v.pause();
     }
     function resume() {
       if (!paused) return;
       paused = false; hero.classList.remove("is-paused");
       if (reduce) return;
-      if (videoActive()) {
-        var p = video.play(); if (p && p.catch) p.catch(videoFailed);
-        if (!vPlaying) armWatchdog(Math.max(remaining, 500));
-      } else schedule(Math.max(remaining, 500));
+      var v = curVid();
+      if (v) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () { failed(v); }); if (!v.dataset.playing) schedule(Math.max(remaining, 500)); }
+      else schedule(Math.max(remaining, 500));
     }
-    $("[data-hero-prev]", hero).addEventListener("click", function () { go(idx - 1); });
-    $("[data-hero-next]", hero).addEventListener("click", function () { go(idx + 1); });
-    bars.forEach(function (b, i) { b.addEventListener("click", function () { go(i); }); });
-    // pause while the pointer is over the slideshow card or focus is in its controls; swipe on the card
-    var heroMedia = $(".hero-media", hero) || hero;
-    heroMedia.addEventListener("mouseenter", pause);
-    heroMedia.addEventListener("mouseleave", resume);
-    heroMedia.addEventListener("focusin", pause);
-    heroMedia.addEventListener("focusout", function (e) { if (!heroMedia.contains(e.relatedTarget)) resume(); });
-    onSwipe(heroMedia, function () { go(idx + 1); }, function () { go(idx - 1); }, pause, resume);
-    onArrows($(".hero-controls", hero), function () { go(idx - 1); }, function () { go(idx + 1); });
-    go(0);
+    if (slides.length > 1) {
+      $("[data-hero-prev]", hero).addEventListener("click", function () { go(idx - 1); });
+      $("[data-hero-next]", hero).addEventListener("click", function () { go(idx + 1); });
+      bars.forEach(function (b, i) { b.addEventListener("click", function () { go(i); }); });
+      var heroMedia = $(".hero-media", hero) || hero;
+      heroMedia.addEventListener("mouseenter", pause);
+      heroMedia.addEventListener("mouseleave", resume);
+      heroMedia.addEventListener("focusin", pause);
+      heroMedia.addEventListener("focusout", function (e) { if (!heroMedia.contains(e.relatedTarget)) resume(); });
+      onSwipe(heroMedia, function () { go(idx + 1); }, function () { go(idx - 1); }, pause, resume);
+      onArrows($(".hero-controls", hero), function () { go(idx - 1); }, function () { go(idx + 1); });
+      go(0);
+    } else { var hc = $(".hero-controls", hero); if (hc) hc.hidden = true; }
   }
+
+  /* ---------- photo / video slideshows on inner pages (built by build.py from images/... folders) ---------- */
+  $$("[data-gal]").forEach(function (g) {
+    var gs = $$(".gal-slide", g), dots = $$(".gal-dots button", g), cnt = $(".gal-count", g), gi = 0, gt = null, gPaused = false;
+    if (gs.length < 2) return;
+    function gVid(i) { return gs[i].getAttribute("data-kind") === "video" ? $("video", gs[i]) : null; }
+    function gGo(n, user) {
+      var ov = gVid(gi); if (ov) ov.pause();
+      gi = (n + gs.length) % gs.length;
+      gs.forEach(function (s, i) { s.classList.toggle("is-on", i === gi); s.setAttribute("aria-hidden", i === gi ? "false" : "true"); });
+      dots.forEach(function (d, i) { d.setAttribute("aria-current", i === gi ? "true" : "false"); });
+      if (cnt) cnt.textContent = (gi + 1) + " / " + gs.length;
+      var v = gVid(gi); if (v && !v.getAttribute("src")) v.src = v.getAttribute("data-src");
+      gSchedule();
+    }
+    function gSchedule() {
+      clearTimeout(gt);
+      var v = gVid(gi);
+      if (reduce || gPaused || v) return; // videos are played by the visitor; the slideshow waits on a video slide
+      gt = setTimeout(function () { gGo(gi + 1); }, 5000);
+    }
+    $("[data-gal-prev]", g).addEventListener("click", function () { gGo(gi - 1, true); });
+    $("[data-gal-next]", g).addEventListener("click", function () { gGo(gi + 1, true); });
+    dots.forEach(function (d, i) { d.addEventListener("click", function () { gGo(i, true); }); });
+    g.addEventListener("mouseenter", function () { gPaused = true; clearTimeout(gt); });
+    g.addEventListener("mouseleave", function () { if (!g.contains(document.activeElement)) { gPaused = false; gSchedule(); } });
+    g.addEventListener("focusin", function () { gPaused = true; clearTimeout(gt); });
+    g.addEventListener("focusout", function (e) { if (!g.contains(e.relatedTarget)) { gPaused = false; gSchedule(); } });
+    onSwipe($(".gal-stage", g), function () { gGo(gi + 1, true); }, function () { gGo(gi - 1, true); }, function () { gPaused = true; clearTimeout(gt); }, function () { gPaused = false; gSchedule(); });
+    onArrows(g, function () { gGo(gi - 1, true); }, function () { gGo(gi + 1, true); });
+    // start only when the slideshow is on screen
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) gSchedule(); else clearTimeout(gt); }); }, { threshold: .3 }).observe(g);
+    } else gSchedule();
+  });
+
+  /* ---------- About: CEO photo for a few seconds, then the 6 years video in the same place ---------- */
+  $$("[data-ceo-media]").forEach(function (cm) {
+    var v = $("video", cm), tg = $("[data-cm-toggle]", cm), snd = $("[data-cm-sound]", cm), started = false, timer = null;
+    function sync() {
+      var playing = !v.paused && !v.ended;
+      cm.classList.toggle("is-playing", playing);
+      tg.setAttribute("aria-label", playing ? "Pause the 6 years video" : "Play the 6 years video");
+    }
+    function start() {
+      if (started) return; started = true;
+      cm.classList.add("show-video");
+      var pr = v.play(); if (pr && pr.catch) pr.catch(function () { sync(); });
+    }
+    tg.addEventListener("click", function () {
+      clearTimeout(timer);
+      if (!started) { start(); return; }
+      if (v.paused || v.ended) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause();
+    });
+    snd.addEventListener("click", function () {
+      v.muted = !v.muted; snd.setAttribute("aria-pressed", v.muted ? "false" : "true");
+      snd.setAttribute("aria-label", v.muted ? "Turn sound on" : "Turn sound off");
+      cm.classList.toggle("is-unmuted", !v.muted);
+    });
+    ["play", "pause", "ended"].forEach(function (ev) { v.addEventListener(ev, sync); });
+    v.addEventListener("ended", function () { cm.classList.remove("show-video"); started = false; });
+    if (reduce) return; // with reduced motion the photo stays; the visitor can press play
+    var delay = parseInt(cm.getAttribute("data-delay"), 10) || 4000;
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (en) {
+        en.forEach(function (e) {
+          if (e.isIntersecting && !started) { timer = setTimeout(start, delay); io.disconnect(); }
+        });
+      }, { threshold: .5 });
+      io.observe(cm);
+    } else timer = setTimeout(start, delay);
+  });
 
   /* ---------- key numbers: count up once when scrolled into view ---------- */
   var factsBox = $(".facts-section");
@@ -372,53 +433,138 @@
     });
     if (focus) t.focus();
   }
-  if (location.hash && tabs.length) { tabs.forEach(function (t) { if ("#" + t.getAttribute("aria-controls") === location.hash) selTab(t); }); }
+  function tabFromHash() {
+    if (!location.hash || !tabs.length) return;
+    tabs.forEach(function (t) {
+      if ("#" + t.getAttribute("aria-controls") === location.hash) {
+        selTab(t);
+        var tl = t.closest('[role="tablist"]'); if (tl) setTimeout(function () { tl.scrollIntoView({ block: "start" }); }, 0);
+      }
+    });
+  }
+  tabFromHash(); window.addEventListener("hashchange", tabFromHash);
   tabs.forEach(function (t, i) {
-    t.addEventListener("click", function () { selTab(t); });
+    t.addEventListener("click", function () { selTab(t); if (history.replaceState) history.replaceState(null, "", "#" + t.getAttribute("aria-controls")); });
     t.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); selTab(tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length], true); }
     });
   });
 
-  /* ---------- products catalogue ---------- */
+  /* ---------- products catalogue (TradeIndia style: categories, search, cards, detail view) ---------- */
   var pgrid = $("#product-grid");
   if (pgrid && window.ADS_PRODUCTS) {
-    var P = window.ADS_PRODUCTS, cats = window.ADS_CATEGORIES, cur = "all", q = $("#product-search"), chipBox = $("#product-chips");
-    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-    var params = new URLSearchParams(location.search); if (params.get("cat")) cur = params.get("cat");
-    function chips() {
-      var html = '<button class="chip" type="button" data-cat="all" aria-pressed="' + (cur === "all") + '">All products<span class="n">' + P.length + "</span></button>";
+    var P = window.ADS_PRODUCTS.map(function (p, i) { p._i = i; return p; });
+    var cats = window.ADS_CATEGORIES.filter(function (c) { return P.some(function (p) { return p.cat === c.id; }); }); // empty categories are hidden
+    var cur = "all", q = $("#product-search"), catBox = $("#product-cats");
+    var WA_PHONE = WA_NUMBER, CALL = "tel:+919875402885";
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function catLabel(id) { var c = window.ADS_CATEGORIES.filter(function (x) { return x.id === id; })[0]; return c ? c.label : id; }
+    function waLink(text) { return "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(text); }
+    var params = new URLSearchParams(location.search);
+    if (params.get("cat") && cats.some(function (c) { return c.id === params.get("cat"); })) cur = params.get("cat");
+    function renderCats() {
+      var html = '<button class="cat-btn" type="button" data-cat="all" aria-pressed="' + (cur === "all") + '"><span>All products</span><span class="n">' + P.length + "</span></button>";
       cats.forEach(function (c) {
         var n = P.filter(function (p) { return p.cat === c.id; }).length;
-        html += '<button class="chip" type="button" data-cat="' + c.id + '" aria-pressed="' + (cur === c.id) + '">' + esc(c.label) + '<span class="n">' + n + "</span></button>";
+        html += '<button class="cat-btn" type="button" data-cat="' + c.id + '" aria-pressed="' + (cur === c.id) + '"><span>' + esc(c.label) + '</span><span class="n">' + n + "</span></button>";
       });
-      chipBox.innerHTML = html;
+      catBox.innerHTML = html;
     }
-    function catLabel(id) { var c = cats.filter(function (x) { return x.id === id; })[0]; return c ? c.label : id; }
     function render() {
       var term = (q.value || "").trim().toLowerCase();
-      var list = P.filter(function (p) {
-        return (cur === "all" || p.cat === cur) && (!term || (p.name + " " + p.desc + " " + p.cat).toLowerCase().indexOf(term) > -1);
-      });
-      var cnt = $("#product-count"); if (cnt) cnt.textContent = list.length + (list.length === 1 ? " product" : " products") + (cur === "all" ? "" : " in " + catLabel(cur));
+      var list = P.filter(function (p) { return (term ? true : (cur === "all" || p.cat === cur)) && (!term || p.name.toLowerCase().indexOf(term) > -1 || (p.desc || "").toLowerCase().indexOf(term) > -1); });
+      $("#product-cat-title").textContent = term ? "Search results" : (cur === "all" ? "All products" : catLabel(cur));
+      $("#product-count").textContent = list.length + (list.length === 1 ? " product" : " products") + (term ? " for “" + q.value.trim() + "”" : "");
       if (!list.length) {
-        var pending = cur !== "all" && !term;
-        pgrid.innerHTML = '<div class="prod-empty">' + (pending ? '<span class="flag">Client content required</span><h3>' + esc(catLabel(cur)) + '</h3><p class="muted" style="margin:8px auto 20px;max-width:46ch">Products for this category have not been supplied yet. ADS to share product names, photos, pack sizes and MRP.</p>' : '<h3>No products match “' + esc(term) + '”</h3><p class="muted" style="margin:8px auto 20px">Try another word, or ask us. We may stock it.</p>') + '<a class="btn btn-primary" href="join.html?type=Product%20enquiry#enquiry">Ask about a product</a></div>';
+        pgrid.innerHTML = '<div class="prod-empty"><h3>No products match “' + esc(q.value.trim()) + '”</h3><p class="muted" style="margin:8px auto 20px">Try another word, or ask us. We may stock it.</p><a class="btn btn-wa" href="' + waLink("Hello Aqua Doctor Solutions, do you have: " + q.value.trim() + "?") + '" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a></div>';
         return;
       }
       pgrid.innerHTML = list.map(function (p) {
-        return '<article class="prod"><div class="prod-pic"><span class="mono">' + esc(catLabel(p.cat)) + '</span><img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
-          '<div class="prod-body"><h3>' + esc(p.name) + "</h3><p>" + esc(p.desc) + "</p>" +
-          '<dl class="prod-spec"><div><dt>Pack size</dt><dd>To be supplied</dd></div><div><dt>Price / MRP</dt><dd>To be supplied</dd></div></dl>' +
-          '<a class="prod-enq" href="join.html?type=Product%20enquiry&amp;product=' + encodeURIComponent(p.name) + '#enquiry">Enquire now<svg><use href="#i-arrow"/></svg></a></div></article>';
+        var msg = "Hello Aqua Doctor Solutions, I am interested in: " + p.name + ". Please share the best price.";
+        return '<article class="pcard">' +
+          '<button class="pcard-open" type="button" data-open="' + p._i + '" aria-label="View details: ' + esc(p.name) + '">' +
+            '<span class="pcard-pic"><img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy"></span>' +
+            '<span class="pcard-body"><span class="pcard-cat">' + esc(catLabel(p.cat)) + '</span><span class="pcard-name">' + esc(p.name) + '</span><span class="pcard-desc">' + esc(p.desc) + "</span></span>" +
+          "</button>" +
+          '<div class="pcard-actions">' +
+            '<button class="btn btn-accent btn-sm pcard-enq" type="button" data-enquire="' + p._i + '">Enquire Now</button>' +
+            '<a class="pc-ic pc-wa" href="' + waLink(msg) + '" target="_blank" rel="noopener" aria-label="WhatsApp about ' + esc(p.name) + '"><svg><use href="#i-wa"/></svg></a>' +
+            '<a class="pc-ic pc-call" href="' + CALL + '" aria-label="Call about ' + esc(p.name) + '"><svg><use href="#i-phone"/></svg></a>' +
+          "</div></article>";
       }).join("");
     }
-    chipBox.addEventListener("click", function (e) {
+    catBox.addEventListener("click", function (e) {
       var b = e.target.closest("[data-cat]"); if (!b) return;
-      cur = b.dataset.cat; $$(".chip", chipBox).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); render();
+      cur = b.dataset.cat; q.value = "";
+      $$(".cat-btn", catBox).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      render();
+      var top = $(".cat-main"); if (top && window.innerWidth < 861) top.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
     });
     q.addEventListener("input", render);
-    chips(); render();
+
+    /* detail view */
+    var pm = $("#product-modal"), pmOpener = null, pmCur = null;
+    function openProduct(i, toForm, from) {
+      var p = P[i]; pmCur = p; pmOpener = from || null;
+      $("#pm-img").src = p.img; $("#pm-img").alt = p.name;
+      $("#pm-cat").textContent = catLabel(p.cat);
+      $("#pm-title").textContent = p.name;
+      $("#pm-desc").textContent = p.desc;
+      $("#pm-uses").innerHTML = (p.uses && p.uses.length)
+        ? p.uses.map(function (u) { return '<li><svg aria-hidden="true"><use href="#i-check"/></svg>' + esc(u) + "</li>"; }).join("")
+        : '<li class="pm-tbs"><span class="flag">To be supplied</span>Uses and benefits will be added by ADS.</li>';
+      $("#pm-pack").textContent = p.pack || "To be supplied";
+      $("#pm-wa").href = waLink("Hello Aqua Doctor Solutions, I am interested in: " + p.name + ". Please share the best price.");
+      $("#pm-full-form").href = "join.html?type=Product%20enquiry&product=" + encodeURIComponent(p.name) + "#enquiry";
+      $("#pm-msg").value = "I would like the best price for: " + p.name;
+      $$(".field", pm).forEach(function (f) { f.classList.remove("is-bad"); });
+      pm.hidden = false; document.body.classList.add("pm-open");
+      requestAnimationFrame(function () { pm.classList.add("is-open"); });
+      var box = $(".pmodal-box", pm); box.scrollTop = 0;
+      if (toForm) setTimeout(function () { $("#pm-form").scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }); $("#pm-name").focus({ preventScroll: true }); }, 60);
+      else $("[data-pm-close]", pm).focus();
+    }
+    function closeProduct() {
+      pm.classList.remove("is-open"); document.body.classList.remove("pm-open");
+      setTimeout(function () { pm.hidden = true; }, 200);
+      if (pmOpener) pmOpener.focus();
+    }
+    pgrid.addEventListener("click", function (e) {
+      var o = e.target.closest("[data-open]"), en = e.target.closest("[data-enquire]");
+      if (o) openProduct(+o.dataset.open, false, o);
+      else if (en) openProduct(+en.dataset.enquire, true, en);
+    });
+    $("[data-pm-close]", pm).addEventListener("click", closeProduct);
+    pm.addEventListener("click", function (e) { if (e.target === pm) closeProduct(); });
+    document.addEventListener("keydown", function (e) {
+      if (pm.hidden) return;
+      if (e.key === "Escape") closeProduct();
+      if (e.key === "Tab") { // keep focus inside the dialog
+        var f = $$('a[href],button,input,textarea,select', pm).filter(function (x) { return x.offsetParent !== null; });
+        if (!f.length) return;
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+      }
+    });
+    $("[data-pm-quote]", pm).addEventListener("click", function (e) {
+      e.preventDefault(); $("#pm-form").scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }); $("#pm-name").focus({ preventScroll: true });
+    });
+    $("#pm-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = $("#pm-name"), phone = $("#pm-phone"), ok = true;
+      [[name, !name.value.trim()], [phone, phone.value.replace(/\D/g, "").length < 10]].forEach(function (pair) {
+        pair[0].closest(".field").classList.toggle("is-bad", pair[1]); pair[0].setAttribute("aria-invalid", pair[1] ? "true" : "false");
+        if (pair[1] && ok) { pair[0].focus(); ok = false; }
+      });
+      if (!ok) return;
+      var t = "Product enquiry: " + pmCur.name + "\nName: " + name.value.trim() + "\nPhone: " + phone.value.trim() +
+        ($("#pm-qty").value.trim() ? "\nQuantity: " + $("#pm-qty").value.trim() : "") +
+        ($("#pm-place").value.trim() ? "\nVillage / district: " + $("#pm-place").value.trim() : "") +
+        ($("#pm-msg").value.trim() ? "\nMessage: " + $("#pm-msg").value.trim() : "");
+      window.open(waLink(t), "_blank", "noopener");
+    });
+    renderCats(); render();
+    if (params.get("product")) { var hit = P.filter(function (p) { return p.name === params.get("product"); })[0]; if (hit) openProduct(hit._i, false); }
   }
 
   /* ---------- join: enquiry type options ---------- */

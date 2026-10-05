@@ -1,0 +1,1 @@
+Solar aerator and Biofloc tank photos (client Drive: Our Service). Any .jpg/.png/.webp, shown in file-name order. Then run: python build.py

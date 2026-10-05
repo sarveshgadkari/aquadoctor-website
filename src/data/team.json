@@ -1,0 +1,47 @@
+{
+  "_note": "Team section on the About page. Order and designations follow the client's 'Our Team' document. Photos go in images/team/ with these file names (.jpg .jpeg .png .webp).",
+  "members": [
+    {
+      "name": "Dr. Debtanu Barman",
+      "role": "Founder and CEO",
+      "file": "01-debtanu-barman",
+      "fallback": "images/t-debtanu.jpg"
+    },
+    {
+      "name": "Md. Reazuddin",
+      "role": "Operation Head (Depo & Godown)",
+      "file": "02-md-reazuddin",
+      "fallback": "images/t-reaz.jpg"
+    },
+    {
+      "name": "Shantanu Acharya",
+      "role": "Team Leader (Technical)",
+      "file": "03-shantanu-acharya"
+    },
+    {
+      "name": "Sourav Maity",
+      "role": "Project Director (Technical)",
+      "file": "04-sourav-maity"
+    },
+    {
+      "name": "Mangaldip Chandra",
+      "role": "Project Supervisor (Field)",
+      "file": "05-mangaldip-chandra"
+    },
+    {
+      "name": "Sanghamitra Chakraborty",
+      "role": "Operation Head (Office-In-Charge)",
+      "file": "07-sanghamitra-chakraborty"
+    },
+    {
+      "name": "Prachi Pandey",
+      "role": "Customer Relationship Manager cum PA",
+      "file": "06-prachi-pandey"
+    },
+    {
+      "name": "Krishnendu Mandal",
+      "role": "Aquaculture Insurance Officer",
+      "file": "08-krishnendu-mandal"
+    }
+  ]
+}

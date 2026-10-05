@@ -1,0 +1,4 @@
+Media page brochure:
+ads-brochure.pdf        the brochure PDF
+ads-brochure-cover.jpg  image of the brochure cover
+Then run: python build.py

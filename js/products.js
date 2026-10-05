@@ -2,7 +2,11 @@
    To add a product: copy one line, change the fields, and put the photo in images/.
    Categories follow the client's content brief. Product names and photos come from
    the "Our Products and Services" page of the 2025 annual report. Pack sizes, prices
-   and key features have not been supplied yet, so they are not shown. */
+   and key features have not been supplied yet.
+   Optional fields per product (shown in the detail view when filled in):
+     uses: ["Use or benefit 1", "Use or benefit 2"],
+     pack: "1 kg, 5 kg, 25 kg"
+   Categories with no products are hidden automatically. */
 window.ADS_CATEGORIES = [
   { id: "seed",      label: "Fish seed" },
   { id: "feed",      label: "Fish feed" },

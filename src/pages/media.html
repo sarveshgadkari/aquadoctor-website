@@ -1,6 +1,6 @@
 <!--
 title: Media | Aqua Doctor Solutions
-description: Photos and videos of Aqua Doctor Solutions: field and farm visits, training programmes, events and exhibitions, awards and projects.
+description: Photos, videos and the company brochure of Aqua Doctor Solutions: field and farm visits, training programmes, events and exhibitions, awards and projects.
 nav: media
 -->
 <header class="page-hero">
@@ -19,6 +19,7 @@ nav: media
     <div class="tabs" role="tablist" aria-label="Gallery type">
       <button role="tab" id="t-photos" aria-controls="photos" aria-selected="true">Photo gallery</button>
       <button role="tab" id="t-videos" aria-controls="videos" aria-selected="false" tabindex="-1">Video gallery</button>
+      <button role="tab" id="t-brochure" aria-controls="brochure" aria-selected="false" tabindex="-1">Brochure</button>
     </div>
 
     <div role="tabpanel" id="photos" aria-labelledby="t-photos">
@@ -79,6 +80,17 @@ nav: media
         <div class="vcard"><div class="video"><img src="images/hero-village.jpg" alt="" loading="lazy"><button class="play" type="button" aria-label="Farmer interaction (video to be supplied)"><svg><use href="#i-play"/></svg></button><div class="video-meta"><span></span><span class="mono">To be supplied</span></div></div><h3>Farmer interaction</h3><p>Adopt the Village, East Midnapore</p></div>
         <div class="vcard"><div class="video"><img src="images/hero-aer.jpg" alt="" loading="lazy"><button class="play" type="button" aria-label="Product videos (video to be supplied)"><svg><use href="#i-play"/></svg></button><div class="video-meta"><span></span><span class="mono">To be supplied</span></div></div><h3>Product videos</h3><p>Aerators and farm equipment</p></div>
         <div class="vcard"><div class="video"><img src="images/hero-summit.jpg" alt="" loading="lazy"><button class="play" type="button" aria-label="Events and exhibitions (video to be supplied)"><svg><use href="#i-play"/></svg></button><div class="video-meta"><span></span><span class="mono">To be supplied</span></div></div><h3>Events and exhibitions</h3><p>Aqua North-East Summit 2025</p></div>
+      </div>
+    </div>
+
+    <!-- Brochure: directly after the video gallery. Files: images/media/ads-brochure.pdf and images/media/ads-brochure-cover.jpg -->
+    <div role="tabpanel" id="brochure" aria-labelledby="t-brochure" hidden>
+      <div class="bro">
+        {{brochure}}
+        <p class="label">Brochure</p>
+        <h3 class="bro-h">Aqua Doctor Solutions company brochure</h3>
+        <p class="muted">Our services, products and projects in one document. Download it to read offline or share it with your team.</p>
+        {{/brochure}}
       </div>
     </div>
   </div>

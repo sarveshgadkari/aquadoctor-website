@@ -3,6 +3,16 @@
 *.pdf
 ADS Registered Logo (1).jpeg
 
+# Videos: keep them out of the GitHub repository
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.webm
+*.m4v
+*.avi
+*.mkv
+
 # Vercel local link folder
 .vercel/
 

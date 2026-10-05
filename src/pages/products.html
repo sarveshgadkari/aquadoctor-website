@@ -13,32 +13,78 @@ nav: products
   </div>
 </header>
 
-<section class="section-sm" aria-label="Product ranges">
+<!-- ================= PRODUCT CATALOGUE (TradeIndia-style: categories left, search on top, card grid, detail view) ================= -->
+<section class="section cat-page" aria-labelledby="cat-h">
   <div class="wrap">
-    <div class="cat-intro reveal">
-      <div><b>Aqua feed and seed</b><span>Spawn, fry and fingerlings; floating, sinking and powder feed</span></div>
-      <div><b>Equipment and machinery</b><span>Solar aerators, feeders, pumps and pellet machines</span></div>
-      <div><b>Biofloc and pond</b><span>Tanks, air stones, wire mesh and liners</span></div>
-      <div><b>Health and testing</b><span>Fish medicines, hormones and water testing kits</span></div>
+    <div class="cat-top">
+      <div>
+        <p class="label">Product catalogue</p>
+        <h2 id="cat-h">Browse our products</h2>
+      </div>
+      <label class="search search-lg"><span class="sr">Search products by name</span><svg><use href="#i-search"/></svg><input type="search" id="product-search" placeholder="Search products by name" autocomplete="off"></label>
+    </div>
+
+    <div class="cat-layout">
+      <aside class="cat-side" aria-label="Product categories">
+        <h3 class="cat-side-h">Categories</h3>
+        <div class="cat-list" id="product-cats" role="group" aria-label="Choose a category"></div>
+        <div class="cat-help">
+          <b>Need help choosing?</b>
+          <span>Send a photo of your pond on WhatsApp or call Doctor-on-Call.</span>
+          <a class="btn btn-wa btn-sm" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          <a class="btn btn-outline btn-sm" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call</a>
+        </div>
+      </aside>
+
+      <div class="cat-main">
+        <div class="cat-head">
+          <h3 id="product-cat-title">All products</h3>
+          <p class="prod-count" id="product-count" aria-live="polite"></p>
+        </div>
+        <div class="pgrid" id="product-grid"></div>
+        <div class="note-bar">
+          <span class="flag">Client content required</span>
+          <span>For each product ADS to supply: uses / benefits, pack sizes and price. Products are edited in <code>js/products.js</code> (one block per product), with no design change.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:0" aria-labelledby="cat-h">
-  <div class="wrap">
-    <h2 id="cat-h" class="sr">Product catalogue</h2>
-    <div class="prod-bar">
-      <p class="prod-count" id="product-count" aria-live="polite" style="margin:0"></p>
-      <label class="search"><span class="sr">Search products</span><svg><use href="#i-search"/></svg><input type="search" id="product-search" placeholder="Search products"></label>
-    </div>
-    <div class="chips prod-chips" id="product-chips" role="group" aria-label="Filter by category"></div>
-    <div class="prod-grid" id="product-grid" aria-live="polite"></div>
-    <div class="note-bar">
-      <span class="flag">Client content required</span>
-      <span>Product names and photos are from the 2025 annual report. ADS to supply for each product: brand, key features and benefits, pack sizes and price / MRP. New products are added with one line in <code>js/products.js</code>, with no design change.</span>
+<!-- ================= PRODUCT DETAIL VIEW ================= -->
+<div class="pmodal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title" hidden>
+  <div class="pmodal-box">
+    <button class="icon-btn pm-close" type="button" data-pm-close aria-label="Close product details"><svg><use href="#i-x"/></svg></button>
+    <div class="pm-grid">
+      <div class="pm-pic"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" id="pm-img"></div>
+      <div class="pm-info">
+        <span class="pm-cat mono" id="pm-cat"></span>
+        <h2 id="pm-title"></h2>
+        <p id="pm-desc"></p>
+        <h3>Uses and benefits</h3>
+        <ul class="pm-uses" id="pm-uses"></ul>
+        <dl class="pm-spec"><div><dt>Pack size</dt><dd id="pm-pack"></dd></div><div><dt>Price</dt><dd>Ask for the best price</dd></div></dl>
+        <div class="pm-actions">
+          <a class="btn btn-accent" href="#pm-form" data-pm-quote><svg><use href="#i-rupee"/></svg>Get Best Price / Enquire</a>
+          <a class="btn btn-wa" id="pm-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          <a class="btn btn-outline" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call</a>
+        </div>
+        <form class="pm-form" id="pm-form" novalidate>
+          <h3>Product enquiry</h3>
+          <div class="pm-fields">
+            <div class="field"><label for="pm-name">Your name</label><input id="pm-name" name="name" required autocomplete="name"></div>
+            <div class="field"><label for="pm-phone">Phone</label><input id="pm-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel"></div>
+            <div class="field"><label for="pm-qty">Quantity needed</label><input id="pm-qty" name="qty" placeholder="e.g. 10 kg, 2 units"></div>
+            <div class="field"><label for="pm-place">Village / district</label><input id="pm-place" name="place"></div>
+            <div class="field pm-full"><label for="pm-msg">Message</label><textarea id="pm-msg" name="msg" rows="2"></textarea></div>
+          </div>
+          <button class="btn btn-wa" type="submit"><svg><use href="#i-wa"/></svg>Send enquiry on WhatsApp</button>
+          <p class="pm-form-note">Your enquiry opens in WhatsApp, ready to send to our team. Prefer a form? <a id="pm-full-form" href="join.html?type=Product%20enquiry#enquiry">Use the full enquiry form</a>.</p>
+        </form>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <section class="section bg-surface" aria-labelledby="help-h">
   <div class="wrap split split-center">
@@ -47,8 +93,8 @@ nav: products
       <h2 id="help-h" style="margin-bottom:18px">Ask the Aqua Doctor first</h2>
       <p class="lede">Send us a photo of your pond or fish on WhatsApp, or call Doctor-on-Call. Our team will guide you to the right product.</p>
       <div class="btn-row" style="margin-top:28px">
+        <a class="btn btn-wa" href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg>WhatsApp +91 98754 02885</a>
         <a class="btn btn-primary" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call +91 98754 02885</a>
-        <a class="btn btn-wa" href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg>WhatsApp</a>
       </div>
     </div>
     <figure class="reveal"><div class="img-frame" style="aspect-ratio:16/10"><img src="images/g-expo.jpg" alt="Dr. Barman explaining products to visitors at an exhibition stall" loading="lazy"></div><figcaption class="img-caption">Explaining products to visitors at an exhibition stall.</figcaption></figure>

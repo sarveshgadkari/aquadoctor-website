@@ -60,6 +60,13 @@
 <symbol id="c-elearn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h20v14H6z"/><path d="M3 25h26l-1.5 2.5h-23z"/><path d="m16 11-6.5 2.7L16 16.4l6.5-2.7z"/><path d="M12 14.8v2.6c2.2 1.5 5.8 1.5 8 0v-2.6M22.5 13.7v3.5"/></symbol>
 <symbol id="c-insure" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M16 3 5 7v8c0 7 5 12 11 14 6-2 11-7 11-14V7z"/><path d="M9.5 16c2.6-3.4 7.4-3.9 10.5 0-3.1 3.9-7.9 3.4-10.5 0zM20 16l3-2.4v4.8z"/><circle cx="13" cy="15.3" r=".6" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 5C6 6.4 3.5 9.6 3.5 13.6V19h6.5v-6.5H6.6c.2-2.6 1.8-4.6 4.2-5.6zM20.1 5c-3.6 1.4-6.1 4.6-6.1 8.6V19h6.5v-6.5h-3.4c.2-2.6 1.8-4.6 4.2-5.6z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+<symbol id="i-eye-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.3-6 9-6 9 6 9 6-3.3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+<symbol id="i-target-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></symbol>
 </defs>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
@@ -70,11 +77,6 @@
       <a class="brand" href="index.html" aria-label="Aqua Doctor Solutions, home">
         <img src="images/ads-logo.jpg" alt="Aqua Doctor Solutions registered logo" width="965" height="1280">
       </a>
-      <span class="brand-divider" aria-hidden="true"></span>
-      <!-- Matsya Sathi app link: site.js points this at MATSYA_APP_URL once the client supplies it -->
-      <a class="brand-app" href="index.html#matsya-sathi" data-matsya-app data-tip="Download Matsya Sathi App" aria-label="Download Matsya Sathi App">
-        <img src="images/matsya.webp" alt="Matsya Sathi logo" width="440" height="440">
-      </a>
     </div>
 
     <nav class="nav" id="site-nav" aria-label="Main">
@@ -84,15 +86,7 @@
       </div>
       <ul class="nav-list">
         <li><a href="index.html" data-nav="home">Home</a></li>
-        <li class="has-sub">
-          <a href="about.html" data-nav="about">About us<svg class="caret" aria-hidden="true"><use href="#i-down"/></svg></a>
-          <ul class="sub">
-            <li><a href="about.html#company"><b>Company overview</b><span>Who we are, where we work</span></a></li>
-            <li><a href="about.html#leadership"><b>Leadership and team</b><span>Dr. Debtanu Barman and the ADS team</span></a></li>
-            <li><a href="about.html#journey"><b>Our journey</b><span>From 2019 to today</span></a></li>
-            <li><a href="impact.html" data-nav="impact"><b>Impact and projects</b><span>Interventions, Adopt the Village</span></a></li>
-          </ul>
-        </li>
+        <li><a href="about.html" data-nav="about">About us</a></li>
         <li><a href="services.html" data-nav="services">Our services</a></li>
         <li><a href="products.html" data-nav="products">Our products</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
@@ -102,16 +96,19 @@
       <div class="nav-bottom">
         <a class="btn btn-primary btn-block" href="join.html#enquiry">Contact us<svg><use href="#i-arrow"/></svg></a>
         <dl class="nav-contact">
-          <div><dt>Doctor-on-Call</dt><dd><a href="tel:+919875402885">+91 98754 02885</a></dd></div>
+          <div><dt>WhatsApp</dt><dd><a class="num-ic" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg class="ic-wa" aria-hidden="true"><use href="#i-wa"/></svg>+91 98754 02885</a></dd></div>
+          <div><dt>Call (Doctor-on-Call)</dt><dd><a class="num-ic" href="tel:+919875402885"><svg aria-hidden="true"><use href="#i-phone"/></svg>+91 98754 02885</a></dd></div>
           <div><dt>Email</dt><dd><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></dd></div>
         </dl>
       </div>
     </nav>
 
     <div class="header-actions">
-      <a class="header-call" href="tel:+919875402885"><span>Doctor-on-Call</span>+91 98754 02885</a>
+      <div class="header-nums">
+        <a class="hn hn-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener" aria-label="WhatsApp +91 98754 02885"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>+91 98754 02885</span></a>
+        <a class="hn hn-call" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>+91 98754 02885</span></a>
+      </div>
       <a class="btn btn-primary header-cta" href="join.html#enquiry">Contact us</a>
-      <a class="icon-btn header-phone" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
       <button class="icon-btn menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-open><svg><use href="#i-menu"/></svg><span class="sr">Open menu</span></button>
     </div>
   </div>
@@ -191,10 +188,10 @@
           <p class="foot-slogan">Grow with fish, grow with Aqua Doctor Solutions.</p>
           <p>One shop, one stop solution for modern aquaculture services in Eastern India. Established 14th July 2019, Kolkata.</p>
           <ul class="socials" aria-label="Social media">
-            <li><a href="#" aria-label="Facebook: Aquadoctor Sol"><svg><use href="#i-fb"/></svg></a></li>
-            <li><a href="#" aria-label="YouTube: Aqua Doctor Solutions"><svg><use href="#i-yt"/></svg></a></li>
-            <li><a href="#" aria-label="Instagram: Aqua Doctor Solutions"><svg><use href="#i-ig"/></svg></a></li>
-            <li><a href="#" aria-label="LinkedIn: Aqua Doctor Solutions"><svg><use href="#i-in"/></svg></a></li>
+            <li><a href="https://www.facebook.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Facebook: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-fb"/></svg></a></li>
+            <li><a href="https://www.instagram.com/aquadoctorsolutions/" target="_blank" rel="noopener" aria-label="Instagram: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-ig"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@AquaDoctorSolutions" target="_blank" rel="noopener" aria-label="YouTube: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-yt"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/aquadoctorsolutions/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn: Aqua Doctor Solutions (opens in a new tab)"><svg><use href="#i-in"/></svg></a></li>
           </ul>
         </div>
       </div>
@@ -203,10 +200,10 @@
         <ul>
           <li><a href="about.html">About us</a></li>
           <li><a href="about.html#leadership">Leadership and team</a></li>
-          <li><a href="about.html#group">Wings of ADS</a></li>
           <li><a href="impact.html">Impact and projects</a></li>
           <li><a href="achievements.html">Achievements</a></li>
           <li><a href="media.html">Media</a></li>
+          <li><a href="media.html#brochure">Brochure</a></li>
           <li><a href="careers.html">Career opportunities</a></li>
         </ul>
       </nav>
@@ -226,9 +223,9 @@
         <h2>Contact</h2>
         <ul>
           <li><svg><use href="#i-pin"/></svg><span>Regus Horizon, Unit 1B - Horizon,<br>1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3,<br>Kolkata, West Bengal 700105</span></li>
-          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a></span></li>
+          <li class="fc-wa"><svg><use href="#i-wa"/></svg><span><a href="https://wa.me/919875402885" target="_blank" rel="noopener">+91 98754 02885</a><small>WhatsApp</small></span></li>
+          <li><svg><use href="#i-phone"/></svg><span><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a><small>Call</small></span></li>
           <li><svg><use href="#i-mail"/></svg><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></li>
-          <li><svg><use href="#i-globe"/></svg><a href="https://www.efishtutor.com" target="_blank" rel="noopener">www.efishtutor.com</a></li>
         </ul>
         <a class="btn btn-primary" href="join.html">Join with us<svg><use href="#i-arrow"/></svg></a>
       </div>
@@ -243,12 +240,15 @@
 </footer>
 
 <nav class="m-bar" aria-label="Quick contact">
-  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a href="https://wa.me/919875402885" data-wa><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a href="tel:+919875402885"><svg><use href="#i-phone"/></svg><span>Call</span></a>
   <a class="m-bar-primary" href="join.html#enquiry"><svg><use href="#i-mail"/></svg><span>Enquire</span></a>
 </nav>
 
-<a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="Chat with Aqua Doctor Solutions on WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<div class="float-btns">
+  <a class="wa-float" href="https://wa.me/919875402885" data-wa aria-label="WhatsApp Aqua Doctor Solutions, +91 98754 02885"><svg><use href="#i-wa"/></svg></a>
+  <a class="call-float" href="tel:+919875402885" aria-label="Call Doctor-on-Call, +91 98754 02885"><svg><use href="#i-phone"/></svg></a>
+</div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
   <div class="lb-stage">

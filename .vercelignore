@@ -13,3 +13,7 @@ README.md
 ads-homepage-assets/
 _brief-reference/
 VSCODE_PROMPT_*.md
+
+# Working tools and folder notes, not needed on the live site
+tools/
+**/_PUT-FILES-HERE.txt
