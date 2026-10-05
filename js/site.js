@@ -607,4 +607,38 @@
       if (typeSel && f.dataset.form === "enquiry") $$("[data-type]").forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
     });
   });
+
+  /* ---------- Matsya Sathi account deletion: opens a filled-in email or WhatsApp message ---------- */
+  var delForm = $("[data-delete-form]");
+  if (delForm) {
+    delForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var ok = true, first = null;
+      $$("[required]", delForm).forEach(function (inp) {
+        var bad = inp.type === "checkbox" ? !inp.checked
+          : !inp.value.trim() || (inp.type === "tel" && inp.value.replace(/\D/g, "").length < 10);
+        inp.closest(".field").classList.toggle("is-bad", !!bad);
+        inp.setAttribute("aria-invalid", bad ? "true" : "false");
+        if (bad && !first) first = inp;
+        if (bad) ok = false;
+      });
+      var msg = $(".sent", delForm);
+      if (!ok) { msg.classList.remove("show"); first.focus(); return; }
+      var v = function (n) { return $('[name="' + n + '"]', delForm).value.trim(); };
+      var text = "Delete my Matsya Sathi account\n\n" +
+        "Name: " + v("name") + "\n" +
+        "Registered mobile number: " + v("phone") + "\n" +
+        "Request: " + v("what") + "\n" +
+        (v("message") ? "Details: " + v("message") + "\n" : "") +
+        "\nI understand that deleting my account is permanent.";
+      var via = e.submitter && e.submitter.value === "whatsapp" ? "whatsapp" : "email";
+      if (via === "whatsapp") {
+        window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      } else {
+        location.href = "mailto:aquadoctorsolutions19@gmail.com?subject=" + encodeURIComponent("Delete my Matsya Sathi account") + "&body=" + encodeURIComponent(text);
+      }
+      msg.textContent = "Your " + (via === "whatsapp" ? "WhatsApp" : "email") + " app should now open with your request filled in. Press send to finish. We will confirm with you on your registered mobile number and delete your account within 30 days.";
+      msg.classList.add("show");
+    });
+  }
 })();

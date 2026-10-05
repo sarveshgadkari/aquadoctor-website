@@ -12,6 +12,9 @@ Static HTML, CSS and JavaScript. No install needed.
 ## Pages
 `index.html` Home · `about.html` About us · `impact.html` Impact and projects · `services.html` Our services · `products.html` Our products · `achievements.html` Achievements · `media.html` Media · `careers.html` Career opportunities · `join.html` Join with us (contact)
 
+App and legal pages (linked from the footer of every page): `matsya-sathi.html` Matsya Sathi app (a product of Aqua Doctor Solutions) · `privacy-policy.html` Privacy Policy · `terms.html` Terms of Use · `delete-account.html` Delete your Matsya Sathi account.
+For the Google Play Console use: Privacy policy URL = `<site>/privacy-policy.html`, Delete account URL = `<site>/delete-account.html`. The deletion form has no backend: it opens a filled-in email or WhatsApp message to ADS.
+
 ## How the files are organised
 - `src/pages/*.html`: the content of each page (only the part inside `<main>`).
 - `src/partials/`: the shared head, header, Doctor-on-Call band and footer.

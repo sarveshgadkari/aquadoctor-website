@@ -5,15 +5,15 @@
 <script>document.documentElement.className="js";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>Join with us | Aqua Doctor Solutions</title>
-<meta name="description" content="Become a customer, register as a farmer, become a dealer or distributor, partner with us, or send a service or product enquiry to Aqua Doctor Solutions, Kolkata.">
+<title>Terms of Use | Aqua Doctor Solutions and the Matsya Sathi app</title>
+<meta name="description" content="The terms for using the Aqua Doctor Solutions website, the Matsya Sathi app, Doctor-on-Call advice and product orders.">
 <link rel="icon" href="images/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Anek+Bangla:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 </head>
-<body data-page="join">
+<body data-page="legal">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <defs>
 <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
@@ -91,7 +91,7 @@
         <li><a href="products.html" data-nav="products">Our products</a></li>
         <li><a href="media.html" data-nav="media">Media</a></li>
         <li><a href="careers.html" data-nav="careers">Careers</a></li>
-        <li><a href="join.html" data-nav="join" aria-current="page">Join with us</a></li>
+        <li><a href="join.html" data-nav="join">Join with us</a></li>
       </ul>
       <div class="nav-bottom">
         <a class="btn btn-primary btn-block" href="join.html#enquiry">Contact us<svg><use href="#i-arrow"/></svg></a>
@@ -115,67 +115,96 @@
 </header>
 <main id="main">
 <header class="page-hero">
-  <div class="page-hero-bg"><img src="images/g-expo.jpg" alt=""></div>
   <div class="wrap">
     <div>
-      <h1>Join with us</h1>
+      <p class="label label-light">Legal</p>
+      <h1>Terms of Use</h1>
     </div>
-    <p class="lede">Buy from us, work with us, register your farm or ask a question. Choose how you would like to connect and our team will get back to you.</p>
+    <p class="lede">The rules for using the Aqua Doctor Solutions website, the Matsya Sathi app, Doctor-on-Call and our products and services.</p>
   </div>
 </header>
 
-<section class="section" aria-labelledby="opts-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="label">Opportunities to connect</p><h2 id="opts-h">How would you like to connect?</h2></div>
-      <p>Select an option to start the enquiry form below.</p>
-    </div>
-    <div class="join-opts reveal">
-      <button class="opt" type="button" aria-pressed="false" data-type="Become a customer"><span class="mono">01</span><span><b>Become a customer</b><span class="d">Buy seed, feed, medicines, test kits and equipment.</span></span></button>
-      <button class="opt" type="button" aria-pressed="false" data-type="Register as a farmer"><span class="mono">02</span><span><b>Register as a farmer</b><span class="d">Get Doctor-on-Call support and farm-level guidance.</span></span></button>
-      <button class="opt" type="button" aria-pressed="false" data-type="Dealer / distributor"><span class="mono">03</span><span><b>Dealer or distributor</b><span class="d">Stock and sell ADS products in your area.</span></span></button>
-      <button class="opt" type="button" aria-pressed="false" data-type="Business partner"><span class="mono">04</span><span><b>Business partner</b><span class="d">Partner with us on projects, supply or services.</span></span></button>
-      <button class="opt" type="button" aria-pressed="false" data-type="Professional collaborator"><span class="mono">05</span><span><b>Professional collaborator</b><span class="d">Experts, institutions and trainers.</span></span></button>
-      <button class="opt" type="button" aria-pressed="false" data-type="Service enquiry"><span class="mono">06</span><span><b>Service or product enquiry</b><span class="d">Ask about a service, a product or a price.</span></span></button>
-    </div>
+<section class="section-sm" aria-label="Terms of Use">
+  <div class="wrap legal">
+    <nav class="legal-toc" aria-label="On this page">
+      <p class="legal-toc-h">On this page</p>
+      <ol>
+        <li><a href="#about">About these terms</a></li>
+        <li><a href="#account">Your Matsya Sathi account</a></li>
+        <li><a href="#advice">Advice and Doctor-on-Call</a></li>
+        <li><a href="#orders">Products and orders</a></li>
+        <li><a href="#insurance">Fisheries insurance</a></li>
+        <li><a href="#content">Our content</a></li>
+        <li><a href="#your-content">What you send us</a></li>
+        <li><a href="#rules">Acceptable use</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#ending">Ending your use</a></li>
+        <li><a href="#law">Governing law</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </nav>
 
-    <div class="contact-layout" id="enquiry">
-      <div>
-        <h2 style="font-size:clamp(1.5rem,1.2rem + 1vw,2rem);margin-bottom:24px">Send an enquiry</h2>
-        <form class="form" novalidate data-form="enquiry">
-          <div class="field"><label for="e-name">Name <span class="req">*</span></label><input id="e-name" name="name" autocomplete="name" required><span class="err">Enter your name.</span></div>
-          <div class="field"><label for="e-phone">Phone number <span class="req">*</span></label><input id="e-phone" name="phone" type="tel" autocomplete="tel" required><span class="err">Enter a 10-digit phone number.</span></div>
-          <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="e-loc">Location <span class="req">*</span></label><input id="e-loc" name="location" placeholder="Village or town, district" required><span class="err">Enter your location.</span></div>
-          <div class="field full"><label for="e-type">Type of enquiry <span class="req">*</span></label>
-            <select id="e-type" name="type" required>
-              <option value="">Choose one</option>
-              <option>Become a customer</option>
-              <option>Register as a farmer</option>
-              <option>Dealer / distributor</option>
-              <option>Business partner</option>
-              <option>Professional collaborator</option>
-              <option>Service enquiry</option>
-              <option>Product enquiry</option>
-            </select><span class="err">Choose a type of enquiry.</span></div>
-          <div class="field full"><label for="e-msg">Requirement or message</label><textarea id="e-msg" name="message" placeholder="Tell us about your pond, the product you need, or your question"></textarea></div>
-          <div class="form-foot"><button class="btn btn-primary" type="submit">Connect with us<svg><use href="#i-arrow"/></svg></button><small>We use your details only to reply to you.</small></div>
-          <div class="sent" role="status"></div>
-        </form>
-      </div>
-      <aside class="contact-card">
-        <h3>Contact us directly</h3>
-        <p style="margin:0;color:var(--on-dark)">For a problem in your pond, call Doctor-on-Call or send photos on WhatsApp.</p>
-        <dl>
-          <div><dt>Phone and Doctor-on-Call</dt><dd><a href="tel:+919875402885">+91 98754 02885</a><br><a href="tel:+918334932266">+91 83349 32266</a></dd></div>
-          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/919875402885" data-wa>Chat with us on WhatsApp</a></dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></dd></div>
-          <div><dt>Office</dt><dd>Regus Horizon, Unit 1B - Horizon,<br>1005 Eastern Metropolitan Bypass, Level&nbsp;1&nbsp;&amp;&nbsp;3,<br>Kolkata, West Bengal 700105</dd></div>
-          <div><dt>Website</dt><dd><a href="https://www.efishtutor.com" target="_blank" rel="noopener">www.efishtutor.com</a></dd></div>
-        </dl>
-        <div class="map-ph"><div><svg><use href="#i-pin"/></svg>Google Map: Regus Horizon, Eastern Metropolitan Bypass, Kolkata 700105<br><span class="mono">Embedded on the live site</span></div></div>
-      </aside>
-    </div>
+    <article class="legal-body">
+      <p class="legal-meta">Effective date: 5 October 2026</p>
+
+      <h2 id="about">1. About these terms</h2>
+      <p>This website and the <b>Matsya Sathi</b> app are owned and operated by <b>Aqua Doctor Solutions</b> ("ADS", "we", "us"), Kolkata, West Bengal, India. Matsya Sathi is a product of Aqua Doctor Solutions. By using the website, the app or our services, you agree to these terms and to our <a href="privacy-policy.html">Privacy Policy</a>. If you do not agree, please do not use them.</p>
+
+      <h2 id="account">2. Your Matsya Sathi account</h2>
+      <ul>
+        <li>You must be 18 or older and give true, up-to-date information.</li>
+        <li>You are responsible for your account and for keeping your phone and any OTP or password safe. Tell us at once if you think someone else has used your account.</li>
+        <li>You can delete your account at any time from the <a href="delete-account.html">account deletion page</a>.</li>
+      </ul>
+
+      <h2 id="advice">3. Advice and Doctor-on-Call</h2>
+      <p>Our experts give advice on fish health, water quality and farm management in good faith, based on the photos, samples and information you give us. Results on a farm depend on many things we cannot control, such as weather, water, seed quality and how the advice is followed. Advice is <b>not a guarantee</b> of any harvest, yield or income. For serious disease outbreaks, a site visit or laboratory test may be needed. Always read the label and follow the dose given for medicines and chemicals.</p>
+
+      <h2 id="orders">4. Products and orders</h2>
+      <ul>
+        <li>Product photos and details are for guidance. Prices, stock and delivery charges are confirmed by our team when you place an order.</li>
+        <li>An order is accepted only when we confirm it. We may decline or cancel an order, for example if a product is out of stock, and will refund any amount you have paid for it.</li>
+        <li>Delivery times depend on your location and are confirmed with your order.</li>
+        <li>Check products when you receive them and tell us within 48 hours if anything is damaged, missing or wrong. Returns, replacements and refunds are handled as agreed at the time of sale and as required by law. Live seed and opened medicines, feed and chemicals cannot be returned unless they are faulty.</li>
+      </ul>
+
+      <h2 id="insurance">5. Fisheries insurance</h2>
+      <p>ADS helps farmers apply for and claim fisheries insurance. The policy is issued by the insurance company, and its terms, premiums and claim decisions are set by that company. ADS does not guarantee that a claim will be approved.</p>
+
+      <h2 id="content">6. Our content</h2>
+      <p>The text, photos, videos, training and e-learning material, logos and the Matsya Sathi name and app belong to Aqua Doctor Solutions or are used with permission. Aqua Doctor Solutions® is a registered trademark. You may use the content for your own farming and learning, but you may not copy, sell or republish it without our written permission.</p>
+
+      <h2 id="your-content">7. What you send us</h2>
+      <p>When you send photos, videos or details of your farm, you allow ADS to use them to advise you and to improve our services. We will not publish photos that show you, your name or your farm's location without your permission.</p>
+
+      <h2 id="rules">8. Acceptable use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>give false information or pretend to be someone else;</li>
+        <li>use the website or app for anything illegal, harmful or misleading;</li>
+        <li>try to break, overload or get unauthorised access to the website, the app or our systems;</li>
+        <li>copy, resell or misuse our content, products or prices.</li>
+      </ul>
+
+      <h2 id="liability">9. Limitation of liability</h2>
+      <p>We work to keep the website and app accurate and available, but they are provided "as is" and may sometimes be unavailable or contain errors. To the extent the law allows, ADS is not responsible for indirect losses, such as loss of fish, crop, profit or data, arising from use of the website, the app or our advice. Our total liability for any product or service is limited to the amount you paid us for it. Nothing in these terms limits rights you have under the Consumer Protection Act, 2019.</p>
+      <p>The website and app may link to other websites, such as social media, government schemes or app stores. We are not responsible for their content or practices.</p>
+
+      <h2 id="ending">10. Ending your use</h2>
+      <p>You can stop using our services and delete your account at any time. We may suspend or close an account that breaks these terms or the law.</p>
+
+      <h2 id="law">11. Governing law</h2>
+      <p>These terms are governed by the laws of India. Any dispute will be handled by the courts in Kolkata, West Bengal. We may update these terms from time to time; the new version will be posted on this page with a new effective date.</p>
+
+      <h2 id="contact">12. Contact</h2>
+      <dl class="legal-contact">
+        <div><dt>Company</dt><dd>Aqua Doctor Solutions</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:aquadoctorsolutions19@gmail.com">aquadoctorsolutions19@gmail.com</a></dd></div>
+        <div><dt>Phone and WhatsApp</dt><dd><a href="tel:+919875402885">+91 98754 02885</a></dd></div>
+        <div><dt>Address</dt><dd>Regus Horizon, Unit 1B - Horizon, 1005 Eastern Metropolitan Bypass, Level 1 &amp; 3, Kolkata, West Bengal 700105</dd></div>
+      </dl>
+      <p class="legal-links">See also: <a href="privacy-policy.html">Privacy Policy</a> · <a href="delete-account.html">Delete your Matsya Sathi account</a> · <a href="matsya-sathi.html">About the Matsya Sathi app</a></p>
+    </article>
   </div>
 </section>
 </main>
