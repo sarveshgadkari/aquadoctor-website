@@ -423,6 +423,12 @@
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function catLabel(id) { var c = window.ADS_CATEGORIES.filter(function (x) { return x.id === id; })[0]; return c ? c.label : id; }
     function waLink(text) { return "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(text); }
+    var UNITS = { Kilograms: "kg", Kilogram: "kg", Liter: "litre", Piece: "piece", Unit: "unit", Box: "box", Pack: "pack", Bag: "bag" };
+    function priceText(p) {
+      if (!p.price) return "";
+      var a = p.price.amount, frac = a % 1 ? 2 : 0;
+      return "₹" + a.toLocaleString("en-IN", { minimumFractionDigits: frac, maximumFractionDigits: frac }) + " per " + (UNITS[p.price.unit] || p.price.unit.toLowerCase());
+    }
     var params = new URLSearchParams(location.search);
     if (params.get("cat") && cats.some(function (c) { return c.id === params.get("cat"); })) cur = params.get("cat");
     function renderCats() {
@@ -437,6 +443,8 @@
       var term = (q.value || "").trim().toLowerCase();
       var list = P.filter(function (p) { return (term ? true : (cur === "all" || p.cat === cur)) && (!term || p.name.toLowerCase().indexOf(term) > -1 || (p.desc || "").toLowerCase().indexOf(term) > -1); });
       $("#product-cat-title").textContent = term ? "Search results" : (cur === "all" ? "All products" : catLabel(cur));
+      var cd = $("#product-cat-desc"), cObj = window.ADS_CATEGORIES.filter(function (x) { return x.id === cur; })[0];
+      cd.textContent = (!term && cObj && cObj.intro) || ""; cd.hidden = !cd.textContent;
       $("#product-count").textContent = list.length + (list.length === 1 ? " product" : " products") + (term ? " for “" + q.value.trim() + "”" : "");
       if (!list.length) {
         pgrid.innerHTML = '<div class="prod-empty"><h3>No products match “' + esc(q.value.trim()) + '”</h3><p class="muted" style="margin:8px auto 20px">Try another word, or ask us. We may stock it.</p><a class="btn btn-wa" href="' + waLink("Hello Aqua Doctor Solutions, do you have: " + q.value.trim() + "?") + '" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a></div>';
@@ -446,8 +454,9 @@
         var msg = "Hello Aqua Doctor Solutions, I am interested in: " + p.name + ". Please share the best price.";
         return '<article class="pcard">' +
           '<button class="pcard-open" type="button" data-open="' + p._i + '" aria-label="View details: ' + esc(p.name) + '">' +
-            '<span class="pcard-pic"><img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy"></span>' +
-            '<span class="pcard-body"><span class="pcard-cat">' + esc(catLabel(p.cat)) + '</span><span class="pcard-name">' + esc(p.name) + '</span><span class="pcard-desc">' + esc(p.desc) + "</span></span>" +
+            '<span class="pcard-pic"><img src="' + esc(p.images[0]) + '" alt="' + esc(p.name) + '" loading="lazy"></span>' +
+            '<span class="pcard-body"><span class="pcard-cat">' + esc(catLabel(p.cat)) + '</span><span class="pcard-name">' + esc(p.name) + '</span>' +
+              (p.price ? '<span class="pcard-price">' + esc(priceText(p)) + "</span>" : "") + '<span class="pcard-desc">' + esc(p.desc) + "</span></span>" +
           "</button>" +
           '<div class="pcard-actions">' +
             '<button class="btn btn-accent btn-sm pcard-enq" type="button" data-enquire="' + p._i + '">Enquire Now</button>' +
@@ -469,14 +478,23 @@
     var pm = $("#product-modal"), pmOpener = null, pmCur = null;
     function openProduct(i, toForm, from) {
       var p = P[i]; pmCur = p; pmOpener = from || null;
-      $("#pm-img").src = p.img; $("#pm-img").alt = p.name;
+      $("#pm-img").src = p.images[0]; $("#pm-img").alt = p.name;
+      $("#pm-thumbs").innerHTML = p.images.length > 1 ? p.images.map(function (src, k) {
+        return '<button type="button" data-pm-thumb="' + esc(src) + '" aria-label="Photo ' + (k + 1) + " of " + p.images.length + '" aria-pressed="' + (k === 0) + '"><img src="' + esc(src) + '" alt=""></button>';
+      }).join("") : "";
       $("#pm-cat").textContent = catLabel(p.cat);
       $("#pm-title").textContent = p.name;
-      $("#pm-desc").textContent = p.desc;
-      $("#pm-uses").innerHTML = (p.uses && p.uses.length)
-        ? p.uses.map(function (u) { return '<li><svg aria-hidden="true"><use href="#i-check"/></svg>' + esc(u) + "</li>"; }).join("")
-        : '<li class="pm-tbs"><span class="flag">To be supplied</span>Uses and benefits will be added by ADS.</li>';
-      $("#pm-pack").textContent = p.pack || "To be supplied";
+      $("#pm-price").innerHTML = p.price ? esc(priceText(p)) + "<small>Ask for the best price</small>" : "Price on request<small>Ask for the best price</small>";
+      // the first paragraph of "About" is the lead text; the rest of the details follow the buttons
+      var about = (p.about || []).slice(), lead = about.length && about[0][0] === "p" ? about.shift()[1] : p.desc;
+      $("#pm-desc").textContent = lead; $("#pm-desc").hidden = !lead;
+      function rows(list) { return '<dl class="pm-spec">' + list.map(function (r) { return "<div><dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("") + "</dl>"; }
+      var det = "";
+      if (p.specs && p.specs.length) det += '<section class="pm-sec"><h3>Specification</h3>' + rows(p.specs) + "</section>";
+      if (p.trade && p.trade.length) det += '<section class="pm-sec"><h3>Trade information</h3>' + rows(p.trade) + "</section>";
+      if (about.length) det += '<section class="pm-sec pm-about"><h3>About ' + esc(p.name) + "</h3>" + about.map(function (b) { return b[0] === "h" ? "<h4>" + esc(b[1]) + "</h4>" : "<p>" + esc(b[1]) + "</p>"; }).join("") + "</section>";
+      if (p.faq && p.faq.length) det += '<section class="pm-sec"><h3>Frequently asked questions</h3>' + p.faq.map(function (f) { return '<details class="pm-faq"><summary>' + esc(f[0]) + "</summary><p>" + esc(f[1]) + "</p></details>"; }).join("") + "</section>";
+      $("#pm-details").innerHTML = det;
       $("#pm-wa").href = waLink("Hello Aqua Doctor Solutions, I am interested in: " + p.name + ". Please share the best price.");
       $("#pm-full-form").href = "join.html?type=Product%20enquiry&product=" + encodeURIComponent(p.name) + "#enquiry";
       $("#pm-msg").value = "I would like the best price for: " + p.name;
@@ -498,6 +516,11 @@
       else if (en) openProduct(+en.dataset.enquire, true, en);
     });
     $("[data-pm-close]", pm).addEventListener("click", closeProduct);
+    $("#pm-thumbs").addEventListener("click", function (e) {
+      var t = e.target.closest("[data-pm-thumb]"); if (!t) return;
+      $("#pm-img").src = t.dataset.pmThumb;
+      $$("[data-pm-thumb]", pm).forEach(function (x) { x.setAttribute("aria-pressed", x === t ? "true" : "false"); });
+    });
     pm.addEventListener("click", function (e) { if (e.target === pm) closeProduct(); });
     document.addEventListener("keydown", function (e) {
       if (pm.hidden) return;
@@ -527,7 +550,10 @@
       window.open(waLink(t), "_blank", "noopener");
     });
     renderCats(); render();
-    if (params.get("product")) { var hit = P.filter(function (p) { return p.name === params.get("product"); })[0]; if (hit) openProduct(hit._i, false); }
+    if (params.get("product")) { // header menu links use the product id; older links used the name
+      var hit = P.filter(function (p) { return p.id === params.get("product") || p.name === params.get("product"); })[0];
+      if (hit) { if (!params.get("cat")) { cur = hit.cat; renderCats(); render(); } openProduct(hit._i, false); }
+    }
   }
 
   /* ---------- join: enquiry type options ---------- */

@@ -30,7 +30,7 @@ For the Google Play Console use: Privacy policy URL = `<site>/privacy-policy.htm
   - `HERO_VIDEO_SRC`: the aerator video for the home page slideshow (default `images/hero/aerator.mp4`). Until the file exists, the slide shows the poster photo.
   - `VISITOR_API`: the visitor counter endpoint (`/api/visits`).
 - `api/visits.js`: the visitor counter (a Vercel serverless function, see below).
-- `js/products.js`: the product catalogue. Add a product by adding one line.
+- `src/data/products.json`: the product catalogue (categories, products, prices, specifications, trade information, About text, FAQs), copied from the Our Products menu of www.aquadoctorsolutions.com. Photos are in `images/products/`. After editing, run `python build.py`: it writes `js/products.js` (do not edit that file by hand) and the header's Our products dropdown.
 - `images/ads-logo.jpg`: an unmodified copy of `ADS Registered Logo (1).jpeg`.
 - `images/awards/`: award photographs exported from the awards document (resized only, never cropped).
 - `_archive/v1-single-page/`: the previous single-page version, kept for reference.
@@ -64,4 +64,4 @@ Copy each file into its folder, then run `python build.py`. Every folder has a `
 
 Large phone photos: run `python tools/optimize_images.py` (needs `pip install pillow`). Keep videos under about 15 MB (MP4, H.264).
 Matsya Sathi app link: set `MATSYA_APP_URL` at the top of `js/site.js`.
-Product uses and pack sizes: add `uses: [...]` and `pack: "..."` to a product in `js/products.js`.
+Products: edit `src/data/products.json` (one block per product; the `_note` at the top lists the fields), put photos in `images/products/`, then run `python build.py`.

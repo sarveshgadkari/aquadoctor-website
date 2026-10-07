@@ -41,11 +41,9 @@ nav: products
           <h3 id="product-cat-title">All products</h3>
           <p class="prod-count" id="product-count" aria-live="polite"></p>
         </div>
+        <p class="cat-desc" id="product-cat-desc" hidden></p>
+        <!-- Products: edit src/data/products.json, then run  python build.py  (it writes js/products.js) -->
         <div class="pgrid" id="product-grid"></div>
-        <div class="note-bar">
-          <span class="flag">Client content required</span>
-          <span>For each product ADS to supply: uses / benefits, pack sizes and price. Products are edited in <code>js/products.js</code> (one block per product), with no design change.</span>
-        </div>
       </div>
     </div>
   </div>
@@ -56,19 +54,18 @@ nav: products
   <div class="pmodal-box">
     <button class="icon-btn pm-close" type="button" data-pm-close aria-label="Close product details"><svg><use href="#i-x"/></svg></button>
     <div class="pm-grid">
-      <div class="pm-pic"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" id="pm-img"></div>
+      <div class="pm-pic"><div class="pm-pic-in"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" id="pm-img"><div class="pm-thumbs" id="pm-thumbs" role="group" aria-label="More photos"></div></div></div>
       <div class="pm-info">
         <span class="pm-cat mono" id="pm-cat"></span>
         <h2 id="pm-title"></h2>
+        <p class="pm-price" id="pm-price"></p>
         <p id="pm-desc"></p>
-        <h3>Uses and benefits</h3>
-        <ul class="pm-uses" id="pm-uses"></ul>
-        <dl class="pm-spec"><div><dt>Pack size</dt><dd id="pm-pack"></dd></div><div><dt>Price</dt><dd>Ask for the best price</dd></div></dl>
         <div class="pm-actions">
           <a class="btn btn-accent" href="#pm-form" data-pm-quote><svg><use href="#i-rupee"/></svg>Get Best Price / Enquire</a>
           <a class="btn btn-wa" id="pm-wa" href="https://wa.me/919875402885" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
           <a class="btn btn-outline" href="tel:+919875402885"><svg><use href="#i-phone"/></svg>Call</a>
         </div>
+        <div class="pm-details" id="pm-details"></div>
         <form class="pm-form" id="pm-form" novalidate>
           <h3>Product enquiry</h3>
           <div class="pm-fields">
