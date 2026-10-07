@@ -1304,27 +1304,17 @@ code{font-family:var(--f-mono);font-size:.85em;background:var(--surface-2);paddi
 .journey-videos{display:grid;gap:20px;margin-top:28px}
 
 /* team: 8 people, equal cards, name and designation below the photo */
-/* team hierarchy: CEO centred on top, the rest in one row joined by connector lines */
-.team-tree{--tgap:20px;text-align:center}
+/* team hierarchy: CEO centred on top, then the rest four per row (4 + 3), centred */
+.team-tree{--tgap:24px;text-align:center}
 .team-tree .member .img-frame{aspect-ratio:4/5}
 .team-tree .member .img-frame img{object-position:50% 20%;filter:none}
-.team-lead{position:relative;width:min(260px,100%);margin:0 auto}
+.team-lead{width:min(260px,100%);margin:0 auto}
 .team-lead b{font-size:1.25rem}
-.team-row{position:relative;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:36px var(--tgap);margin:28px 0 0;padding:32px 0 0}
-.team-row .member{position:relative;flex:0 0 calc((100% - 6 * var(--tgap)) / 7)}
-.team-lead::after,.team-row::before,.team-row .member::before{content:"";position:absolute;background:var(--line-strong)}
-.team-lead::after{left:50%;top:100%;width:1.5px;height:28px}
-.team-row::before{top:0;height:1.5px;left:calc((100% - 6 * var(--tgap)) / 14);right:calc((100% - 6 * var(--tgap)) / 14)}
-.team-row .member::before{left:50%;top:-32px;width:1.5px;height:32px}
+.team-row{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:40px var(--tgap);max-width:1000px;margin:48px auto 0;padding:0}
+.team-row .member{flex:0 0 calc((100% - 3 * var(--tgap)) / 4)}
 .member-ph{display:grid;place-items:center;align-content:center;gap:6px;background:linear-gradient(150deg,var(--cyan-50),#fff)}
 .member-ph span{font-size:2.25rem;font-weight:700;color:var(--petrol);font-variation-settings:"wdth" 85}
 .member-ph small{font-family:var(--f-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-/* when the row no longer fits on one line, drop the connectors and wrap (centred) */
-@media (max-width:1100px){
-  .team-row{padding-top:0;margin-top:40px}
-  .team-lead::after,.team-row::before,.team-row .member::before{display:none}
-  .team-row .member{flex-basis:calc((100% - 3 * var(--tgap)) / 4)}
-}
 @media (max-width:640px){
   .team-tree{--tgap:14px}
   .team-row{row-gap:28px}
