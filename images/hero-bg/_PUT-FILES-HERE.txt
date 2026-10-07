@@ -1,0 +1,4 @@
+Home page moving water background.
+water.mp4         the water video (muted, loops; keep it under about 5 MB)
+water-poster.jpg  optional still image shown while the video loads
+Then run: python build.py

@@ -286,6 +286,18 @@ def products_menu():
             f'<ul class="sub">{"".join(cats)}</ul></li>')
 
 
+def hero_bg_video():
+    """Home hero: moving water video behind everything. Put the file at images/hero-bg/water.mp4
+    (optional poster: images/hero-bg/water-poster.jpg/.webp). Without it the teal gradient shows."""
+    vid = find_file("images/hero-bg/water", VID_EXT)
+    if not vid:
+        return ""
+    poster = find_file("images/hero-bg/water-poster", IMG_EXT)
+    pa = f' poster="{html.escape(poster)}"' if poster else ""
+    return (f'<video class="hero-bg-video" autoplay muted loop playsinline preload="auto"{pa}>'
+            f'<source src="{html.escape(vid)}" type="{vid_type(vid)}"></video>')
+
+
 def large_media_warning():
     big = []
     for f in (ROOT / "images").rglob("*"):
@@ -324,6 +336,7 @@ def build():
         if "{{brochure}}" in body:
             bm = re.search(r"\{\{brochure\}\}(.*?)\{\{/brochure\}\}", body, re.S)
             body = body[:bm.start()] + brochure_block().replace("{BRO_COPY}", bm.group(1).strip()) + body[bm.end():]
+        body = body.replace("{{hero_bg_video}}", hero_bg_video())
         if "{{hero_slides}}" in body:
             sl, bars = hero_slides()
             body = body.replace("{{hero_slides}}", sl).replace("{{hero_bars}}", bars)

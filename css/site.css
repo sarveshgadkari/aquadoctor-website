@@ -1036,15 +1036,19 @@ code{font-family:var(--f-mono);font-size:.85em;background:var(--surface-2);paddi
   radial-gradient(70% 80% at 85% 22%,rgba(1,172,200,.42),transparent 65%),
   radial-gradient(60% 70% at 8% 100%,rgba(1,172,200,.16),transparent 70%),
   linear-gradient(160deg,var(--petrol-900) 0%,var(--petrol) 48%,var(--cyan-700) 100%)}
-/* very subtle, slow water ripple: two tiled light-noise layers drifting apart (pure CSS/SVG, no files) */
-.hero-ripple{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;mix-blend-mode:screen;opacity:.1;filter:blur(1px)}
-.hero-ripple i{position:absolute;top:0;display:block;will-change:transform;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='r' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.0125' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.93 0 0 0 0 1 -3.2 0 0 0 0.78'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23r)'/%3E%3C/svg%3E");
-  background-size:480px 480px}
-.hero-ripple i:first-child{left:0;width:calc(100% + 480px);height:calc(100% + 480px);animation:ripple-a 70s linear infinite}
-.hero-ripple i:last-child{left:-640px;width:calc(100% + 640px);height:calc(100% + 640px);background-size:640px 640px;opacity:.7;animation:ripple-b 95s linear infinite}
-@keyframes ripple-a{from{transform:translate3d(0,0,0)}to{transform:translate3d(-480px,-480px,0)}}
-@keyframes ripple-b{from{transform:translate3d(0,0,0)}to{transform:translate3d(640px,-640px,0)}}
+/* moving water background (as on the reference site): water video, teal overlay, soft glows, rising bubbles */
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:1;opacity:.62;background:linear-gradient(135deg,var(--petrol-900) 0%,var(--petrol) 50%,var(--cyan-700) 100%)}
+.hero-bg-glow{position:absolute;inset:0;z-index:2;background:
+  radial-gradient(circle at 20% 50%,rgba(1,172,200,.15),transparent 50%),
+  radial-gradient(circle at 80% 20%,rgba(34,161,187,.1),transparent 40%),
+  radial-gradient(circle at 60% 80%,rgba(103,212,232,.1),transparent 40%)}
+.hero-bubbles{position:absolute;inset:0;z-index:3;overflow:hidden}
+/* each <i> is a full-height track; its dot starts below the bottom edge and the track slides up one full height */
+.hero-bubbles i{position:absolute;top:0;bottom:0;left:var(--x);width:4px;animation:hero-rise 8s ease-in infinite;animation-delay:var(--d);opacity:0;will-change:transform,opacity}
+.hero-bubbles i::before{content:"";position:absolute;left:0;top:100%;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3)}
+@keyframes hero-rise{0%{opacity:0;transform:translateY(10px)}10%{opacity:.5}90%{opacity:.5}100%{opacity:0;transform:translateY(-100%)}}
 
 /* layout: copy and buttons in the left column (about 55%), slideshow card on the right (about 45%) */
 .hero-inner{position:relative;z-index:4;display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);grid-template-areas:"copy media" "ctas media";column-gap:clamp(32px,5vw,72px);align-items:center;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(110px,11vw,150px)}
@@ -1203,7 +1207,8 @@ code{font-family:var(--f-mono);font-size:.85em;background:var(--surface-2);paddi
 @media (prefers-reduced-motion:reduce){
   .hero-slide img{transform:none!important}
   .hero-progress button.is-on::after{animation:none;width:100%}
-  .hero-water svg,.hero-ripple i{animation:none!important}
+  .hero-water svg{animation:none!important}
+  .hero-bubbles,.hero-bg-video{display:none}
   .rec-text.is-on,.rec-photo.is-on{animation:none}
 }
 

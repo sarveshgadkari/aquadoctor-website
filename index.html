@@ -117,7 +117,12 @@
 <main id="main">
 <!-- ================= HERO: teal water banner, text left, slideshow card right ================= -->
 <section class="hero" data-hero aria-label="Introduction">
-  <div class="hero-ripple" aria-hidden="true"><i></i><i></i></div>
+  <!-- Moving water background: video (images/hero-bg/water.mp4) under a teal overlay, soft glows and rising bubbles -->
+  <div class="hero-bg" aria-hidden="true">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="images/hero-bg/water-poster.jpg"><source src="images/hero-bg/water.mp4" type="video/mp4"></video>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bubbles"><i style="--d:0s;--x:47%"></i><i style="--d:0.5s;--x:26%"></i><i style="--d:1s;--x:25%"></i><i style="--d:1.5s;--x:8%"></i><i style="--d:2s;--x:61%"></i><i style="--d:2.5s;--x:33%"></i><i style="--d:3s;--x:87%"></i><i style="--d:3.5s;--x:25%"></i><i style="--d:4s;--x:11%"></i><i style="--d:4.5s;--x:35%"></i><i style="--d:5s;--x:4%"></i><i style="--d:5.5s;--x:60%"></i><i style="--d:6s;--x:11%"></i><i style="--d:6.5s;--x:8%"></i><i style="--d:7s;--x:25%"></i><i style="--d:7.5s;--x:12%"></i><i style="--d:8s;--x:70%"></i><i style="--d:8.5s;--x:55%"></i><i style="--d:9s;--x:87%"></i><i style="--d:9.5s;--x:68%"></i></div>
+  </div>
   <div class="hero-water" aria-hidden="true">
     <svg class="w1" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 46C360 6 360 6 720 46S1080 86 1440 46 1800 6 2160 46 2520 86 2880 46V100H0Z"/></svg>
     <svg class="w2" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 56C360 22 360 22 720 56S1080 90 1440 56 1800 22 2160 56 2520 90 2880 56V100H0Z"/></svg>
