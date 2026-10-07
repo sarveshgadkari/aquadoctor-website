@@ -1,1 +1,1 @@
-Insurance photos (farmer with the insurance officer, pond-side insurance work). The insurance VIDEO goes one folder up as images/services/insurance-video.mp4. Then run: python build.py
+Insurance photos (farmer with the insurance officer, pond-side insurance work).. Then run: python build.py

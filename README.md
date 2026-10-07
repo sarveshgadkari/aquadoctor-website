@@ -58,7 +58,7 @@ Copy each file into its folder, then run `python build.py`. Every folder has a `
 | Homepage_Slideshow | `images/hero/` | Shown in file-name order. Add alt text in `src/data/hero_alts.json`. Name the aerator video `hero-02a-aerator.mp4`. |
 | Our Team | `images/team/` | `01-debtanu-barman.jpg` … `08-krishnendu-mandal.jpg` (names in `src/data/team.json`) |
 | Our Journey | `images/about/` | `journey-1.mp4`, `journey-2.mp4`, `ceo-6-years.mp4` (optional `ceo-photo.jpg`) |
-| Our Service | `images/services/climate/`, `hitech/`, `insurance/`, `training/` | Any names. Insurance video: `images/services/insurance-video.mp4` |
+| Our Service | `images/services/climate/`, `hitech/`, `insurance/`, `training/` | Any names. |
 | Recognition | `images/recognition/` | Replace a photo by using the same file name |
 | Brochure | `images/media/` | `ads-brochure.pdf`, `ads-brochure-cover.jpg` |
 
