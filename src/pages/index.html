@@ -204,31 +204,41 @@ nav: home
       <h2 id="fb-h">What Our Clients Say</h2>
       <p>Real feedback from our valued farmers and partners</p>
     </div>
-    <div class="fb-grid">
-      <figure class="fb-card">
-        <span class="flag">Client content required</span>
-        <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
-        <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
-      </figure>
-      <figure class="fb-card">
-        <span class="flag">Client content required</span>
-        <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
-        <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
-      </figure>
-      <figure class="fb-card">
-        <span class="flag">Client content required</span>
-        <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
-        <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
-      </figure>
-      <figure class="fb-card">
-        <span class="flag">Client content required</span>
-        <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
-        <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
-      </figure>
+    <!-- Reviews slider: two cards at a time (one on phones). Add more <figure class="fb-card"> blocks; the slider adapts. -->
+    <div class="fb-slider" data-fb aria-roledescription="carousel" aria-label="Client feedback">
+      <div class="fb-viewport">
+        <div class="fb-track">
+        <figure class="fb-card" role="group" aria-roledescription="slide">
+          <span class="flag">Client content required</span>
+          <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
+          <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
+        </figure>
+        <figure class="fb-card" role="group" aria-roledescription="slide">
+          <span class="flag">Client content required</span>
+          <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
+          <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
+        </figure>
+        <figure class="fb-card" role="group" aria-roledescription="slide">
+          <span class="flag">Client content required</span>
+          <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
+          <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
+        </figure>
+        <figure class="fb-card" role="group" aria-roledescription="slide">
+          <span class="flag">Client content required</span>
+          <svg class="fb-quote" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote class="fb-text">Farmer feedback to be supplied</blockquote>
+          <figcaption class="fb-who"><div class="fb-badge" aria-hidden="true">N</div><div><b>Name</b><small>Role, village/district</small></div></figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="fb-ctrl">
+        <button class="icon-btn icon-btn-light" type="button" data-fb-prev aria-label="Previous reviews"><svg><use href="#i-left"/></svg></button>
+        <div class="fb-dots" role="group" aria-label="Choose reviews"></div>
+        <button class="icon-btn icon-btn-light" type="button" data-fb-next aria-label="Next reviews"><svg><use href="#i-right"/></svg></button>
+      </div>
     </div>
   </div>
 </section>

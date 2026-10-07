@@ -75,6 +75,48 @@
     });
   }
 
+  /* ---------- home: client reviews slider (two cards at a time, one on phones) ---------- */
+  $$("[data-fb]").forEach(function (fb) {
+    var track = $(".fb-track", fb), cards = $$(".fb-card", track), dotsBox = $(".fb-dots", fb);
+    var mq = window.matchMedia("(max-width:760px)"), idx = 0, timer = null, paused = false, seen = false;
+    function per() { return mq.matches ? 1 : 2; }
+    function pages() { return Math.max(1, cards.length - per() + 1); }
+    function buildDots() {
+      dotsBox.innerHTML = "";
+      for (var i = 0; i < pages(); i++) {
+        var b = document.createElement("button");
+        b.type = "button"; b.setAttribute("aria-label", "Show reviews " + (i + 1) + " of " + pages());
+        b.addEventListener("click", (function (k) { return function () { go(k); restart(); }; })(i));
+        dotsBox.appendChild(b);
+      }
+      $(".fb-ctrl", fb).hidden = pages() < 2;
+    }
+    function go(i) {
+      var n = pages(); idx = (i + n) % n;
+      var step = cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+      track.style.transform = "translate3d(" + (-idx * step) + "px,0,0)";
+      cards.forEach(function (c, k) { var vis = k >= idx && k < idx + per(); c.setAttribute("aria-hidden", vis ? "false" : "true"); c.setAttribute("aria-label", (k + 1) + " of " + cards.length); });
+      $$("button", dotsBox).forEach(function (d, k) { d.setAttribute("aria-current", k === idx ? "true" : "false"); });
+    }
+    function play() { clearTimeout(timer); if (!reduce && !paused && seen && pages() > 1) timer = setTimeout(function () { go(idx + 1); play(); }, 6000); }
+    function restart() { play(); }
+    $("[data-fb-next]", fb).addEventListener("click", function () { go(idx + 1); restart(); });
+    $("[data-fb-prev]", fb).addEventListener("click", function () { go(idx - 1); restart(); });
+    fb.addEventListener("mouseenter", function () { paused = true; clearTimeout(timer); });
+    fb.addEventListener("mouseleave", function () { paused = false; play(); });
+    fb.addEventListener("focusin", function () { paused = true; clearTimeout(timer); });
+    fb.addEventListener("focusout", function (e) { if (!fb.contains(e.relatedTarget)) { paused = false; play(); } });
+    onSwipe($(".fb-viewport", fb), function () { go(idx + 1); }, function () { go(idx - 1); }, function () { paused = true; clearTimeout(timer); }, function () { paused = false; play(); });
+    onArrows(fb, function () { go(idx - 1); restart(); }, function () { go(idx + 1); restart(); });
+    var onMq = function () { buildDots(); go(Math.min(idx, pages() - 1)); };
+    if (mq.addEventListener) mq.addEventListener("change", onMq); else mq.addListener(onMq);
+    window.addEventListener("resize", function () { go(idx); });
+    buildDots(); go(0);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { en.forEach(function (e) { seen = e.isIntersecting; if (seen) play(); else clearTimeout(timer); }); }, { threshold: .3 }).observe(fb);
+    } else { seen = true; play(); }
+  });
+
   /* ---------- home hero slideshow: photos + any number of videos (slides built from images/hero/ by build.py) ---------- */
   var hero = $("[data-hero]");
   if (hero) {
