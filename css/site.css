@@ -164,6 +164,12 @@ h4{font-size:1.0625rem;line-height:1.35;font-weight:650;letter-spacing:0}
 .subnav a{display:block;padding:15px 14px;white-space:nowrap;font-size:.9375rem;font-weight:550;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px}
 .subnav a:hover{color:var(--petrol)}
 .subnav a.is-current{color:var(--petrol);border-bottom-color:var(--cyan)}
+/* centred, dark-blue variant (about page); max-content + auto margins keeps it scrollable on phones */
+.subnav-dark{background:var(--petrol);border-bottom-color:var(--petrol)}
+.subnav-dark ul{width:max-content;max-width:100%;margin:0 auto}
+.subnav-dark a{color:var(--on-dark)}
+.subnav-dark a:hover{color:#fff}
+.subnav-dark a.is-current{color:#fff;border-bottom-color:var(--cyan)}
 
 /* ---------- home: hero (rest in the revision block at the end) ---------- */
 @keyframes fill{to{width:100%}}
