@@ -7,7 +7,7 @@ nav: about
   <div class="page-hero-bg"><img src="images/hero-village.jpg" alt=""></div>
   <div class="wrap">
     <div>
-      <h1>One shop, one stop solution for modern aquaculture services</h1>
+      <h1><span class="hero-kicker">Aqua Doctor Solutions</span>One shop, one stop solution for modern aquaculture services</h1>
     </div>
     <p class="lede">Founded in Kolkata in 2019 by Dr. Debtanu Barman, the “Aqua Doctor”, to bring scientifically proven, high-yield fish farming techniques to farmers and entrepreneurs in Eastern India.</p>
   </div>
@@ -75,8 +75,10 @@ nav: about
 <section class="section bg-surface" id="leadership" aria-labelledby="ceo-h">
   <div class="wrap ceo">
     <aside class="ceo-side reveal">
-      <!-- Photo for a few seconds, then the 6 years video in the same place (files: images/about/ceo-photo.jpg, images/about/ceo-6-years.mp4) -->
-      {{ceo_media}}
+      <!-- CEO photo (images/about/ceo-photo.jpg) with the 6 years video below it.
+           Video: put the file at images/about/ceo-6-years.mp4, OR replace "images/about/ceo-6-years" below
+           with a YouTube link such as https://www.youtube.com/watch?v=XXXXXXXXXXX, then run: python build.py -->
+      {{ceo_media:images/about/ceo-6-years|images/ceo-stage.jpg|Aqua Doctor Solutions: 6 years}}
       <dl>
         <div><dt>Role</dt><dd>Founder and Chief Executive Officer</dd></div>
         <div><dt>Known as</dt><dd>The “Aqua Doctor”</dd></div>

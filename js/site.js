@@ -182,43 +182,6 @@
     } else gSchedule();
   });
 
-  /* ---------- About: CEO photo for a few seconds, then the 6 years video in the same place ---------- */
-  $$("[data-ceo-media]").forEach(function (cm) {
-    var v = $("video", cm), tg = $("[data-cm-toggle]", cm), snd = $("[data-cm-sound]", cm), started = false, timer = null;
-    function sync() {
-      var playing = !v.paused && !v.ended;
-      cm.classList.toggle("is-playing", playing);
-      tg.setAttribute("aria-label", playing ? "Pause the 6 years video" : "Play the 6 years video");
-    }
-    function start() {
-      if (started) return; started = true;
-      cm.classList.add("show-video");
-      var pr = v.play(); if (pr && pr.catch) pr.catch(function () { sync(); });
-    }
-    tg.addEventListener("click", function () {
-      clearTimeout(timer);
-      if (!started) { start(); return; }
-      if (v.paused || v.ended) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause();
-    });
-    snd.addEventListener("click", function () {
-      v.muted = !v.muted; snd.setAttribute("aria-pressed", v.muted ? "false" : "true");
-      snd.setAttribute("aria-label", v.muted ? "Turn sound on" : "Turn sound off");
-      cm.classList.toggle("is-unmuted", !v.muted);
-    });
-    ["play", "pause", "ended"].forEach(function (ev) { v.addEventListener(ev, sync); });
-    v.addEventListener("ended", function () { cm.classList.remove("show-video"); started = false; });
-    if (reduce) return; // with reduced motion the photo stays; the visitor can press play
-    var delay = parseInt(cm.getAttribute("data-delay"), 10) || 4000;
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (en) {
-        en.forEach(function (e) {
-          if (e.isIntersecting && !started) { timer = setTimeout(start, delay); io.disconnect(); }
-        });
-      }, { threshold: .5 });
-      io.observe(cm);
-    } else timer = setTimeout(start, delay);
-  });
-
   /* ---------- key numbers: count up once when scrolled into view ---------- */
   var factsBox = $(".facts-section");
   if (factsBox && !reduce && "IntersectionObserver" in window) {

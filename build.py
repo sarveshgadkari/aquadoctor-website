@@ -156,13 +156,25 @@ def slideshow(arg):
             f'<div class="gal-stage">{"".join(slides)}</div>{ctrl}</div>')
 
 
+def youtube_id(url):
+    m = re.search(r"(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|live/))([\w-]{11})", url)
+    return m.group(1) if m else None
+
+
 def video_slot(arg):
     """{{video:images/about/journey-1|poster.jpg|Label}}: shows the video if the file exists,
-    otherwise a clearly marked placeholder telling you where to put it."""
+    otherwise a clearly marked placeholder telling you where to put it.
+    The first part can also be a YouTube link; the video is then embedded from YouTube."""
     parts = arg.split("|")
     base = parts[0].strip()
     poster = parts[1].strip() if len(parts) > 1 and parts[1].strip() else ""
     label = parts[2].strip() if len(parts) > 2 else "Video"
+    yt = youtube_id(base) if base.startswith("http") else None
+    if yt:
+        return (f'<figure class="vslot"><iframe src="https://www.youtube-nocookie.com/embed/{yt}?rel=0" title="{html.escape(label)}" '
+                'loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+                'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                f'<figcaption class="img-caption">{html.escape(label)}</figcaption></figure>')
     src = find_file(base, VID_EXT)
     if src:
         pa = f' poster="{html.escape(poster)}"' if poster and (ROOT / poster).is_file() else ""
@@ -186,25 +198,19 @@ def team_grid():
             initials = "".join(w[0] for w in m["name"].replace("Dr.", "").replace("Md.", "").split()[:2]).upper()
             pic = (f'<div class="img-frame member-ph" role="img" aria-label="Photo of {html.escape(m["name"])} to be added">'
                    f'<span>{initials}</span><small>Photo to be added</small></div>')
-        out.append(f'<li class="member{" lead" if i == 0 else ""}">{pic}<b>{html.escape(m["name"])}</b><span>{html.escape(m["role"])}</span></li>')
-    return '<ul class="team reveal">' + "".join(out) + "</ul>"
+        out.append(f'{pic}<b>{html.escape(m["name"])}</b><span>{html.escape(m["role"])}</span>')
+    # hierarchy: the first member (CEO) on top, everyone else in one row below
+    lead, rest = out[0], out[1:]
+    return (f'<div class="team-tree reveal"><div class="member team-lead">{lead}</div>'
+            '<ul class="team-row">' + "".join(f'<li class="member">{m}</li>' for m in rest) + "</ul></div>")
 
 
-def ceo_media():
+def ceo_media(video):
+    """{{ceo_media:VIDEO|Label}}: the CEO photo with a video player below it.
+    VIDEO is a file path without extension (images/about/ceo-6-years) or a YouTube link."""
     photo = find_file("images/about/ceo-photo", IMG_EXT) or "images/ceo-portrait.jpg"
-    vid = find_file("images/about/ceo-6-years", VID_EXT)
     img = f'<img class="cm-photo" src="{html.escape(photo)}" alt="Dr. Debtanu Barman, Founder and CEO" loading="lazy">'
-    if not vid:
-        return (f'<div class="ceo-media"><div class="img-frame">{img}</div>'
-                '<p class="img-caption"><span class="flag">Client content required</span> 6 years video: put the file at <code>images/about/ceo-6-years.mp4</code></p></div>')
-    return (f'<div class="ceo-media" data-ceo-media data-delay="4000"><div class="img-frame">{img}'
-            f'<video class="cm-video" muted playsinline preload="metadata" aria-label="Aqua Doctor Solutions: 6 years">'
-            f'<source src="{html.escape(vid)}" type="{vid_type(vid)}"></video>'
-            '<button class="cm-toggle" type="button" data-cm-toggle aria-label="Play the 6 years video">'
-            '<svg class="ic-play"><use href="#i-play"/></svg><svg class="ic-pause"><use href="#i-pause"/></svg></button>'
-            '<button class="cm-sound" type="button" data-cm-sound aria-pressed="false" aria-label="Turn sound on">'
-            '<svg><use href="#i-sound"/></svg></button></div>'
-            '<p class="img-caption">Dr. Debtanu Barman. The 6 years video plays after a few seconds.</p></div>')
+    return f'<div class="ceo-media"><div class="img-frame">{img}</div>{video_slot(video)}</div>'
 
 
 def brochure_block():
@@ -285,8 +291,7 @@ def build():
         body = re.sub(r"\{\{video:(.*?)\}\}", lambda m: video_slot(m.group(1)), body)
         if "{{team}}" in body:
             body = body.replace("{{team}}", team_grid())
-        if "{{ceo_media}}" in body:
-            body = body.replace("{{ceo_media}}", ceo_media())
+        body = re.sub(r"\{\{ceo_media:(.*?)\}\}", lambda m: ceo_media(m.group(1)), body)
         if "{{brochure}}" in body:
             bm = re.search(r"\{\{brochure\}\}(.*?)\{\{/brochure\}\}", body, re.S)
             body = body[:bm.start()] + brochure_block().replace("{BRO_COPY}", bm.group(1).strip()) + body[bm.end():]
