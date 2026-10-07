@@ -121,7 +121,7 @@
   var hero = $("[data-hero]");
   if (hero) {
     var slides = $$(".hero-slide", hero), bars = $$(".hero-progress button", hero);
-    var idx = 0, tm = null, MS = 6000, remaining = MS, startedAt = 0, paused = false;
+    var idx = 0, tm = null, MS = 2000, VID_WAIT = 6000, remaining = MS, startedAt = 0, paused = false; // MS: time per photo slide
     if (reduce) hero.classList.add("is-static");
     function vidOf(i) { var sl = slides[i]; return sl && sl.hasAttribute("data-video") ? $("video", sl) : null; }
     function curVid() { var v = vidOf(idx); return v && !v.dataset.failed && !reduce ? v : null; }
@@ -155,9 +155,9 @@
         try { v.currentTime = 0; } catch (err) {}
         v.dataset.playing = "";
         if (!paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () { failed(v); }); }
-        // watchdog: if the video has not started in one slide's time, move on so the slideshow never gets stuck
-        clearTimeout(tm); remaining = MS; startedAt = Date.now();
-        if (!paused) tm = setTimeout(function () { if (!v.dataset.playing) { failed(v); } }, MS);
+        // watchdog: if the video has not started within VID_WAIT, move on so the slideshow never gets stuck
+        clearTimeout(tm); remaining = VID_WAIT; startedAt = Date.now();
+        if (!paused) tm = setTimeout(function () { if (!v.dataset.playing) { failed(v); } }, VID_WAIT);
       } else schedule(MS);
     }
     function pause() {
@@ -207,7 +207,7 @@
       clearTimeout(gt);
       var v = gVid(gi);
       if (reduce || gPaused || v) return; // videos are played by the visitor; the slideshow waits on a video slide
-      gt = setTimeout(function () { gGo(gi + 1); }, 5000);
+      gt = setTimeout(function () { gGo(gi + 1); }, 2000);
     }
     $("[data-gal-prev]", g).addEventListener("click", function () { gGo(gi - 1, true); });
     $("[data-gal-next]", g).addEventListener("click", function () { gGo(gi + 1, true); });
